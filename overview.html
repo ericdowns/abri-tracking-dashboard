@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abri Website Performance: Overview</title>
+<style>
+  @font-face{font-family:'Roobert';src:url('./fonts/Roobert-Regular.woff2') format('woff2'),url('./fonts/Roobert-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Roobert';src:url('./fonts/Roobert-SemiBold.woff2') format('woff2'),url('./fonts/Roobert-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap;}
+
+  :root{
+    --ink:#273038;--charcoal:#303C46;--pewter:#5E6C78;--silver:#A2B0BC;
+    --red:#EC4243;--red-soft:#fbe3e3;--teal:#99DBD3;--dteal:#45C7B8;--teal-deep:#1f8d7f;--teal-soft:#e3f5f2;
+    --tan:#D7D5D0;--line:#e6e2da;--cream:#F1EFE9;--offwhite:#F8F7F3;--card:#ffffff;
+    --shadow:0 1px 2px rgba(39,48,56,.05), 0 10px 30px rgba(39,48,56,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Roobert',-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 70px;}
+
+  .topbar{background:var(--ink);color:#fff;padding:18px 34px;display:flex;align-items:center;gap:14px;}
+  .topbar .logo{font-weight:600;font-size:21px;letter-spacing:3px;}
+  .topbar .sub{color:#9aa9b6;font-size:13px;border-left:1px solid #3c4b59;padding-left:14px;}
+
+  .wrap{max-width:760px;margin:0 auto;padding:44px 34px 0;}
+  h1{font-weight:600;font-size:30px;letter-spacing:-.6px;line-height:1.2;}
+  .uline{width:54px;height:4px;background:var(--red);border-radius:3px;margin:14px 0 22px;}
+  .intro{font-size:17px;color:var(--charcoal);margin-bottom:36px;}
+
+  h2{font-weight:600;font-size:19px;letter-spacing:-.2px;margin:0 0 12px;}
+  section{margin-bottom:34px;}
+  p{margin-bottom:14px;color:var(--charcoal);}
+  p:last-child{margin-bottom:0;}
+
+  ul{list-style:none;margin:6px 0 0;}
+  li{position:relative;padding-left:26px;margin-bottom:11px;color:var(--charcoal);}
+  li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--dteal);}
+
+  .demo{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;margin-top:4px;}
+  .demo .arr{color:var(--dteal);}
+
+  .phase{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow);margin-bottom:16px;}
+  .phase:last-child{margin-bottom:0;}
+  .phase .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:11px;}
+  .phase.one .tag{background:var(--dteal);color:#fff;}
+  .phase.two .tag{background:#fff;color:var(--teal-deep);border:1.5px solid var(--dteal);}
+  .phase h3{font-weight:600;font-size:16px;margin-bottom:7px;}
+  .phase p{font-size:14.5px;margin-bottom:0;color:var(--pewter);}
+
+  .note{background:var(--offwhite);border-left:3px solid var(--dteal);border-radius:8px;padding:16px 20px;}
+  .note p{margin-bottom:0;font-size:15px;color:var(--charcoal);}
+
+  .cost{background:var(--card);border:1px dashed var(--tan);border-radius:14px;padding:20px 22px;}
+  .cost .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--pewter);font-weight:600;margin-bottom:6px;}
+  .cost .val{font-size:16px;color:var(--silver);font-style:italic;}
+
+  .foot{max-width:760px;margin:30px auto 0;padding:20px 34px 0;color:var(--silver);font-size:12.5px;border-top:1px solid var(--line);}
+
+  @media (max-width:560px){.wrap{padding:32px 20px 0;}.topbar{padding:14px 20px;}.foot{padding:18px 20px 0;}.topbar .sub{display:none;}h1{font-size:25px;}}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="logo">ABRI</span>
+    <span class="sub">Website performance &nbsp;·&nbsp; prepared by Grain &amp; Mortar</span>
+  </div>
+
+  <div class="wrap">
+    <h1>Your website's real numbers, in one place you trust</h1>
+    <div class="uline"></div>
+    <p class="intro">Your site is doing real work, but the numbers that prove it are scattered across tools you do not control, and the tracking those tools pile on is what is slowing your pages down. This is a plan to fix both: one dashboard, built right into your own site, that shows the numbers that matter to you in plain language, without the weight.</p>
+
+    <section>
+      <h2>What you would be able to see</h2>
+      <ul>
+        <li>How many new people visit, by day, week, and month</li>
+        <li>Meetings booked, phone calls, and newsletter signups, all in one place</li>
+        <li>Where your best leads actually come from, including your ads</li>
+        <li>Which pages hold attention the longest</li>
+        <li>A clear split between people ready to talk and people just getting to know you</li>
+      </ul>
+      <p style="margin-top:18px;"><a class="demo" href="./">See the working preview <span class="arr">&rarr;</span></a></p>
+    </section>
+
+    <section>
+      <h2>How we would build it</h2>
+      <p>We would build this in two phases, so you see it working before committing to the whole thing.</p>
+      <div class="phase one">
+        <span class="tag">Phase 1</span>
+        <h3>The foundation</h3>
+        <p>The dashboard, live, running on the information we capture right on your site. This also clears out the unused tracking that is slowing your pages down, so a faster site comes built in. Nothing outside your site is needed for this part.</p>
+      </div>
+      <div class="phase two">
+        <span class="tag">Phase 2</span>
+        <h3>The connected pieces</h3>
+        <p>Once Phase 1 is proving itself, we connect your scheduling and call tools to confirm exact bookings and calls, and pull in your past records so you can compare against last year. We scope this part after you have seen Phase 1 in action.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What we would need from you</h2>
+      <p>Phase 1 needs nothing on your end beyond a green light. For the Phase 2 pieces, we would need access to a few of your existing tools: your scheduling tool, your call tracking, and your past website statistics. Some of that may live with your current marketing team, so part of the work is simply gathering those logins.</p>
+    </section>
+
+    <section>
+      <h2>One thing worth saying plainly</h2>
+      <div class="note">
+        <p>The numbers here will not line up exactly with Google's or your ad platforms' numbers. Every tool counts a little differently, and that is normal. We will always be clear about which number to trust for what, so you are never left guessing.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Investment</h2>
+      <div class="cost">
+        <div class="lbl">Phase 1</div>
+        <div class="val">Cost and timeline to be confirmed</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next step</h2>
+      <p>Take a look at the preview above. If it feels like the right direction, we will get Phase 1 scoped and scheduled to start, and tackle Phase 2 once you have it in your hands.</p>
+    </section>
+  </div>
+
+  <div class="foot">
+    <p>Prepared for Abri by Grain &amp; Mortar. The preview shows sample numbers to illustrate the layout, not live data.</p>
+  </div>
+
+</body>
+</html>
