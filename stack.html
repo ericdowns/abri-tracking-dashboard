@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abri Tracking Dashboard: Build Services (Internal)</title>
+<style>
+  @font-face{font-family:'Roobert';src:url('./fonts/Roobert-Regular.woff2') format('woff2'),url('./fonts/Roobert-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Roobert';src:url('./fonts/Roobert-SemiBold.woff2') format('woff2'),url('./fonts/Roobert-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap;}
+
+  :root{
+    --ink:#273038;--charcoal:#303C46;--pewter:#5E6C78;--silver:#A2B0BC;
+    --red:#EC4243;--red-soft:#fbe3e3;--teal:#99DBD3;--dteal:#45C7B8;--teal-deep:#1f8d7f;--teal-soft:#e3f5f2;
+    --gold-soft:#f7ead0;--gold-deep:#8a6526;
+    --tan:#D7D5D0;--line:#e6e2da;--cream:#F1EFE9;--offwhite:#F8F7F3;--card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Roobert',-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 0 60px;}
+
+  .topbar{background:var(--ink);color:#fff;padding:18px 34px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .logo{font-weight:600;font-size:21px;letter-spacing:3px;}
+  .brand .sub{color:#9aa9b6;font-size:13px;border-left:1px solid #3c4b59;padding-left:14px;}
+  .badge-int{background:var(--charcoal);color:#cdd7df;font-size:11px;font-weight:600;letter-spacing:.7px;text-transform:uppercase;padding:6px 11px;border-radius:5px;border:1px solid #3c4b59;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:30px 34px 0;}
+  h1{font-weight:600;font-size:26px;letter-spacing:-.5px;}
+  .uline{width:52px;height:4px;background:var(--red);border-radius:3px;margin:10px 0 16px;}
+  .lead{color:var(--pewter);font-size:14.5px;margin-bottom:18px;max-width:760px;}
+  .lead b{color:var(--ink);}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px;font-size:12.5px;color:var(--pewter);align-items:center;}
+  .legend .st{margin-right:2px;}
+
+  .tablewrap{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(39,48,56,.05), 0 10px 30px rgba(39,48,56,.05);overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;min-width:920px;}
+  thead th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--pewter);font-weight:600;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--offwhite);white-space:nowrap;}
+  tbody td{padding:15px 18px;border-bottom:1px solid #f1eee7;font-size:13.5px;vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  .svc{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;}
+  .prov{font-size:11px;color:var(--pewter);margin-top:3px;}
+  .prov.ours{color:var(--teal-deep);font-weight:600;}
+  .api{color:var(--pewter);}
+  .role{color:var(--ink);max-width:380px;}
+  td.phase{white-space:nowrap;font-size:12px;color:var(--pewter);font-weight:500;}
+
+  .st{display:inline-block;font-size:11px;font-weight:600;padding:4px 9px;border-radius:5px;white-space:nowrap;}
+  .st.have{background:var(--teal-soft);color:var(--teal-deep);}
+  .st.pending{background:var(--gold-soft);color:var(--gold-deep);}
+  .st.build{background:#e7e9ec;color:var(--charcoal);}
+  .st.cut{background:var(--red-soft);color:#c5302f;}
+
+  .foot{max-width:1180px;margin:22px auto 0;padding:18px 34px 0;color:var(--silver);font-size:12px;border-top:1px solid var(--line);}
+  .foot a{color:var(--teal-deep);}
+
+  @media (max-width:560px){
+    .wrap{padding:22px 18px 0;}.topbar{padding:14px 18px;}.foot{padding:18px 18px 0;}
+    .brand .sub{display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">
+      <span class="logo">ABRI</span>
+      <span class="sub">Tracking dashboard &nbsp;·&nbsp; build services &amp; integrations</span>
+    </div>
+    <span class="badge-int">Internal · G&amp;M reference</span>
+  </div>
+
+  <div class="wrap">
+    <h1>Build Services &amp; Integrations</h1>
+    <div class="uline"></div>
+    <p class="lead">Every service this tracking build touches, whether it has an API or CLI we can use, whether we have access yet, and the role it plays. <b>This is an internal Grain &amp; Mortar reference,</b> not part of the client dashboard. Anything marked Grain &amp; Mortar is something we build and own, including our own tracking engine, which does not exist yet.</p>
+
+    <div class="legend">
+      <span><span class="st have">Have it</span> ready to use</span>
+      <span><span class="st build">To build</span> our work, not done yet</span>
+      <span><span class="st pending">Need access</span> waiting on a key or login</span>
+      <span><span class="st cut">Removing</span> being cut</span>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>API / CLI</th>
+            <th>Status</th>
+            <th>Role in the build</th>
+            <th>Phase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="svc">G&amp;M Site Tracking</div><div class="prov ours">Grain &amp; Mortar (build)</div></td>
+            <td class="api">None needed. We build it: a lightweight first-party script plus data tables in WordPress.</td>
+            <td><span class="st build">To build</span></td>
+            <td class="role">The core engine. Visitors, time on page, bounce, top pages, the intent-signal clicks (schedule-call, phone), and channel attribution (reads the ad tag on landing). The heart of the dashboard.</td>
+            <td class="phase">Phase 1</td>
+          </tr>
+          <tr>
+            <td><div class="svc">G&amp;M Capture</div><div class="prov ours">Grain &amp; Mortar (built)</div></td>
+            <td class="api">Our own WordPress plugin. Has its own data store plus admin and WP-CLI.</td>
+            <td><span class="st have">Have it</span></td>
+            <td class="role">Replaces the site's current popups. Captures newsletter signups, guide downloads, and form fills as clean lead data. The General-lead engine. Already built, needs wiring into the dashboard.</td>
+            <td class="phase">Phase 1</td>
+          </tr>
+          <tr>
+            <td><div class="svc">WordPress + ACF</div><div class="prov ours">Grain &amp; Mortar built site</div></td>
+            <td class="api">WP-CLI and REST. ACF for settings.</td>
+            <td><span class="st have">Have it</span></td>
+            <td class="role">The home for everything. Hosts the dashboard, stores the first-party event data, and holds the editable settings.</td>
+            <td class="phase">Phase 1</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Mailchimp</div><div class="prov">Abri</div></td>
+            <td class="api">Marketing API. Yes.</td>
+            <td><span class="st have">Have it</span></td>
+            <td class="role">Newsletter audience. G&amp;M Capture sends signups here behind the scenes. Key and audience already confirmed.</td>
+            <td class="phase">Phase 1</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Calendly</div><div class="prov">Abri</div></td>
+            <td class="api">REST API plus booking webhooks. Paid plans only.</td>
+            <td><span class="st pending">Need access</span></td>
+            <td class="role">Confirmed meeting bookings, the top-ranked qualified lead. Without it we can only count clicks toward booking, not completed meetings.</td>
+            <td class="phase">Phase 2</td>
+          </tr>
+          <tr>
+            <td><div class="svc">CallRail</div><div class="prov">Abri / ad team</div></td>
+            <td class="api">REST API plus post-call webhooks. Yes.</td>
+            <td><span class="st pending">Need access</span></td>
+            <td class="role">Confirmed phone calls, the second qualified lead. Decision still open: track clicks (we own) or real connected calls (needs this).</td>
+            <td class="phase">Phase 2</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Google Analytics (GA4)</div><div class="prov">Abri / ad team</div></td>
+            <td class="api">GA4 Data API. Yes.</td>
+            <td><span class="st pending">Need access</span></td>
+            <td class="role">Backfills the year-over-year history. Without it, year-over-year only builds from launch forward.</td>
+            <td class="phase">Phase 2</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Google Ads</div><div class="prov">Ad team</div></td>
+            <td class="api">Google Ads API. Yes.</td>
+            <td><span class="st pending">Need access</span></td>
+            <td class="role">Ad spend, for cost-per-lead by channel. Note: attribution of paid traffic is captured first-party from the ad link, so only the spend figures need this. The conversion pixel stays with the ad team.</td>
+            <td class="phase">Phase 2</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Meta Ads</div><div class="prov">Ad team</div></td>
+            <td class="api">Meta Marketing API. Yes.</td>
+            <td><span class="st pending">Need access</span></td>
+            <td class="role">Ad spend, for cost-per-lead. Meta-sourced traffic is attributed first-party from the link. The Meta pixel stays with the ad team.</td>
+            <td class="phase">Phase 2</td>
+          </tr>
+          <tr>
+            <td><div class="svc">AI Insights (Abri Assistant)</div><div class="prov ours">Grain &amp; Mortar (build)</div></td>
+            <td class="api">Claude (Anthropic) API. We have it.</td>
+            <td><span class="st build">To build</span></td>
+            <td class="role">Optional layer that reads the dashboard and explains the numbers in plain language. Priced as a separate add-on.</td>
+            <td class="phase">Optional</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Google Tag Manager</div><div class="prov">Ad team</div></td>
+            <td class="api">Tag Manager API exists, but we are not building on it.</td>
+            <td><span class="st pending">Ad team owns</span></td>
+            <td class="role">The current speed bottleneck. We coordinate trimming and deferring the tags loaded through it. It is not a data source for us.</td>
+            <td class="phase">Cleanup</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Microsoft Clarity</div><div class="prov">Abri</div></td>
+            <td class="api">Has an export API, not relevant here.</td>
+            <td><span class="st cut">Removing</span></td>
+            <td class="role">Heatmap tool Zack never uses. Removed as part of the speed cleanup.</td>
+            <td class="phase">Cleanup</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p>Internal build reference for the Abri tracking dashboard. Client mockup lives at <a href="./">the dashboard URL</a>. Sample and planning data only.</p>
+  </div>
+
+</body>
+</html>
