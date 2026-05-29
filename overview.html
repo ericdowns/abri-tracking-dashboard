@@ -52,10 +52,16 @@
   .cost{background:var(--card);border:1px dashed var(--tan);border-radius:14px;padding:20px 22px;}
   .cost .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--pewter);font-weight:600;margin-bottom:6px;}
   .cost .val{font-size:16px;color:var(--silver);font-style:italic;}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
+  .opt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .opt.feat{border:1.5px solid var(--dteal);}
+  .opt .optname{font-weight:600;font-size:16px;margin-bottom:8px;}
+  .opt p{font-size:14px;color:var(--pewter);margin-bottom:14px;}
+  .opt .optprice{font-size:13px;color:var(--silver);font-style:italic;border-top:1px dashed var(--tan);padding-top:12px;margin-top:auto;}
 
   .foot{max-width:760px;margin:30px auto 0;padding:20px 34px 0;color:var(--silver);font-size:12.5px;border-top:1px solid var(--line);}
 
-  @media (max-width:560px){.wrap{padding:32px 20px 0;}.topbar{padding:14px 20px;}.foot{padding:18px 20px 0;}.topbar .sub{display:none;}h1{font-size:25px;}}
+  @media (max-width:560px){.wrap{padding:32px 20px 0;}.topbar{padding:14px 20px;}.foot{padding:18px 20px 0;}.topbar .sub{display:none;}h1{font-size:25px;}.opts{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -110,11 +116,21 @@
     </section>
 
     <section>
-      <h2>Investment</h2>
-      <div class="cost">
-        <div class="lbl">Phase 1</div>
-        <div class="val">Cost and timeline to be confirmed</div>
+      <h2>Where you would like to start</h2>
+      <p>Two ways in. Both put a dashboard you trust in your hands. The difference is how much detail arrives in the first pass.</p>
+      <div class="opts">
+        <div class="opt">
+          <div class="optname">A focused start</div>
+          <p>Your most important numbers, live fast: your top conversions, your traffic, where your leads come from, and the speed cleanup. The quickest path to real data you can trust.</p>
+          <div class="optprice">Investment to be confirmed</div>
+        </div>
+        <div class="opt feat">
+          <div class="optname">The complete foundation</div>
+          <p>Everything in the focused start, plus the fuller picture: deeper detail on where your leads come from, how people engage, and a more complete dashboard from day one.</p>
+          <div class="optprice">Investment to be confirmed</div>
+        </div>
       </div>
+      <p style="margin-top:16px;">Either way, Phase 2 comes next, scoped once you have Phase 1 in hand: confirmed bookings and calls, comparing against last year, and what your ads cost you per lead.</p>
     </section>
 
     <section>
