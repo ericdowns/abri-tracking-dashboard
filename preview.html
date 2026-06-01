@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abri Website Performance (Mockup)</title>
+<style>
+  @font-face{font-family:'Roobert';src:url('./fonts/Roobert-Regular.woff2') format('woff2'),url('./fonts/Roobert-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
+  @font-face{font-family:'Roobert';src:url('./fonts/Roobert-SemiBold.woff2') format('woff2'),url('./fonts/Roobert-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap;}
+
+  :root{
+    --ink:#273038;--charcoal:#303C46;--pewter:#5E6C78;--slate:#65767A;--silver:#A2B0BC;
+    --red:#EC4243;--red-soft:#fbe3e3;--teal:#99DBD3;--dteal:#45C7B8;--teal-deep:#1f8d7f;--teal-soft:#e3f5f2;
+    --tan:#D7D5D0;--line:#e6e2da;--cream:#F1EFE9;--offwhite:#F8F7F3;--card:#ffffff;
+    --shadow:0 1px 2px rgba(39,48,56,.05), 0 10px 30px rgba(39,48,56,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Roobert',-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 0 50px;}
+  .sb{font-weight:600;}
+
+  .topbar{background:var(--ink);color:#fff;padding:18px 34px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .logo{font-weight:600;font-size:21px;letter-spacing:3px;}
+  .brand .sub{color:#9aa9b6;font-size:13px;border-left:1px solid #3c4b59;padding-left:14px;letter-spacing:.2px;}
+  .topbar .right{display:flex;align-items:center;gap:14px;}
+  .pill{background:#333f4b;color:#eef3f6;padding:7px 15px;border-radius:22px;font-size:13px;display:inline-flex;gap:9px;align-items:center;}
+  .pill .car{color:#7e8d9a;font-size:10px;}
+  .badge-mock{background:var(--red);color:#fff;font-size:11px;font-weight:600;letter-spacing:.7px;text-transform:uppercase;padding:6px 11px;border-radius:5px;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:30px 34px 0;}
+  .page-title{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .page-title h1{font-weight:600;font-size:27px;letter-spacing:-.5px;}
+  .page-title .stamp{color:var(--pewter);font-size:13px;}
+  .uline{width:52px;height:4px;background:var(--red);border-radius:3px;margin:10px 0 16px;}
+  .lead-note{color:var(--pewter);font-size:14.5px;margin-bottom:26px;max-width:680px;}
+
+  .phase{font-size:10.5px;font-weight:600;letter-spacing:.4px;padding:4px 10px;border-radius:20px;white-space:nowrap;text-transform:uppercase;}
+  .phase.p1{background:var(--dteal);color:#fff;}
+  .phase.p2{background:#fff;color:var(--teal-deep);border:1.5px solid var(--dteal);}
+
+  .section-head{display:flex;align-items:center;gap:13px;margin:4px 0 14px;flex-wrap:wrap;}
+  .section-head .ttl{font-weight:600;font-size:16px;}
+  .section-head .desc{color:var(--pewter);font-size:13px;}
+  .section-head.s2 .desc{color:var(--teal-deep);}
+
+  .note-capture{background:var(--teal-soft);border-left:3px solid var(--dteal);border-radius:8px;padding:13px 16px;font-size:13px;color:var(--pewter);margin-bottom:18px;line-height:1.55;}
+  .note-capture b{color:var(--teal-deep);}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:18px;}
+  .row-2{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:18px;}
+  .row-half{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow);position:relative;}
+  .chead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;}
+  .card h3{font-size:14px;letter-spacing:-.1px;color:var(--charcoal);font-weight:600;}
+
+  /* source line + upgrade */
+  .source{font-size:11.5px;color:var(--pewter);margin-top:15px;display:flex;align-items:center;gap:6px;}
+  .source .dot{width:8px;height:8px;border-radius:50%;background:var(--dteal);display:inline-block;flex-shrink:0;}
+  .source .dot.dep{background:transparent;border:1.5px solid var(--silver);width:7px;height:7px;}
+  .source b{color:var(--pewter);font-weight:600;}
+  .upgrade{font-size:11.5px;color:var(--teal-deep);margin-top:13px;padding-top:13px;border-top:1px dashed var(--line);}
+  .upgrade .a{font-weight:600;}
+
+  .kpi{display:flex;flex-direction:column;}
+  .kpi .tag{font-size:11.5px;font-weight:600;letter-spacing:.3px;padding:4px 9px;border-radius:5px;display:inline-block;}
+  .kpi .tag.gen{background:var(--teal-soft);color:var(--teal-deep);}
+  .kpi .tag.traf{background:#eceef0;color:var(--charcoal);}
+  .kpi .tag.intent{background:#eef0f2;color:var(--pewter);}
+  .kpi .tag.qual{background:var(--red-soft);color:#c5302f;}
+  .kpi .chead{margin-bottom:0;}
+  .kpi .big{font-weight:600;font-size:42px;line-height:1;letter-spacing:-1.5px;margin:16px 0 5px;}
+  .kpi .label{font-size:14px;color:var(--pewter);font-weight:500;}
+  .kpi .trend{font-size:13px;margin-top:9px;display:flex;align-items:center;gap:7px;}
+  .kpi .up{color:var(--teal-deep);font-weight:600;}
+  .kpi .sub{color:var(--pewter);}
+  .kpi .ytd{margin-top:auto;padding-top:13px;border-top:1px solid var(--line);font-size:13px;color:var(--pewter);display:flex;justify-content:space-between;align-items:center;}
+  .kpi .ytd b{font-weight:600;color:var(--ink);font-size:15px;}
+  .spark{margin-top:12px;display:block;}
+
+  .chart{display:flex;align-items:flex-end;gap:20px;height:200px;padding:8px 4px 0;}
+  .bargroup{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:7px;height:100%;position:relative;}
+  .bar{width:24px;border-radius:5px 5px 0 0;}
+  .bar.last{background:var(--tan);}.bar.this{background:var(--dteal);}
+  .bargroup .mlabel{position:absolute;bottom:-25px;font-size:12px;color:var(--pewter);}
+  .legend{display:flex;gap:20px;font-size:13px;color:var(--pewter);margin-top:34px;}
+  .legend span{display:inline-flex;align-items:center;gap:8px;}
+  .legend i{width:13px;height:13px;border-radius:4px;display:inline-block;}
+  .sw-last{background:var(--tan);}.sw-this{background:var(--dteal);}
+
+  .donut-wrap{display:flex;align-items:center;gap:24px;}
+  .donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--red) 0 37.5%, var(--dteal) 37.5% 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .donut .hole{width:96px;height:96px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .donut .hole b{font-weight:600;font-size:30px;letter-spacing:-1px;}
+  .donut .hole span{font-size:11px;color:var(--pewter);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+  .leadlist{flex:1;}
+  .leadlist .li{display:flex;align-items:flex-start;gap:11px;margin-bottom:14px;}
+  .leadlist .li:last-child{margin-bottom:0;}
+  .leadlist .li i{width:13px;height:13px;border-radius:4px;margin-top:5px;flex-shrink:0;}
+  .leadlist .li .t{font-weight:600;font-size:15px;}
+  .leadlist .li .d{font-size:12.5px;color:var(--pewter);}
+  .leadlist .li .n{margin-left:auto;font-weight:600;font-size:19px;color:var(--pewter);}
+  .sw-q{background:var(--red);}.sw-g{background:var(--dteal);}
+
+  table{width:100%;border-collapse:collapse;}
+  th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--pewter);font-weight:600;padding:0 0 11px;border-bottom:1px solid var(--line);}
+  td{padding:14px 0;border-bottom:1px solid #f1eee7;font-size:14px;vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  .pg{font-weight:500;}
+  .timebar-track{background:#eef0ef;border-radius:5px;height:8px;width:100%;margin-top:6px;}
+  .timebar-fill{background:var(--teal);height:8px;border-radius:5px;}
+  td.num{text-align:right;color:var(--pewter);font-weight:500;}
+  td.time{color:var(--ink);font-weight:600;}
+  .ministat{margin-bottom:20px;}
+  .ministat:last-child{margin-bottom:0;}
+  .ministat .big{font-weight:600;font-size:33px;line-height:1;letter-spacing:-1px;}
+  .ministat .label{font-size:13px;color:var(--pewter);margin-top:5px;}
+  .gauge{display:flex;align-items:center;gap:16px;}
+  .gauge .ring{width:74px;height:74px;border-radius:50%;flex-shrink:0;background:conic-gradient(var(--dteal) 0 42%, #e8eaea 42% 100%);display:flex;align-items:center;justify-content:center;}
+  .gauge .ring .in{width:52px;height:52px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;letter-spacing:-.5px;}
+  .divtop{border-top:1px solid var(--line);padding-top:20px;}
+
+  .qbig{font-weight:600;font-size:42px;line-height:1;letter-spacing:-1.5px;margin:14px 0 4px;}
+  .qlabel{font-size:14px;color:var(--pewter);font-weight:500;margin-bottom:16px;}
+  .qrow{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-top:1px solid var(--line);}
+  .qrow b{font-weight:600;font-size:20px;min-width:38px;}
+  .qrow .qn{font-size:14px;}
+  .qrow .qv{margin-left:auto;font-size:12px;color:var(--pewter);}
+
+  .p2-zone{background:var(--teal-soft);border:1px solid var(--dteal);border-radius:16px;padding:22px;margin-bottom:18px;}
+  .p2-zone .section-head{margin-top:0;}
+
+  .ab{display:flex;flex-direction:column;gap:14px;margin-top:4px;}
+  .abv .abh{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;}
+  .abv .abh b{font-weight:600;}
+  .abtrack{background:#eef0ef;border-radius:5px;height:10px;width:100%;}
+  .abfill{height:10px;border-radius:5px;}
+  .win{font-size:12.5px;color:var(--teal-deep);font-weight:600;margin-top:4px;}
+
+  .gloss-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px 34px;margin-top:2px;}
+  .gi{font-size:13px;color:var(--pewter);line-height:1.55;}
+  .gi b{color:var(--ink);font-weight:600;}
+  .lead-key{background:var(--offwhite);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+  .lead-key .klabel{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--pewter);font-weight:600;margin-bottom:12px;}
+  .lead-key .lk{font-size:13.5px;color:var(--pewter);line-height:1.5;display:flex;gap:11px;align-items:flex-start;margin-bottom:10px;}
+  .lead-key .lk:last-child{margin-bottom:0;}
+  .lead-key .lk b{color:var(--ink);}
+  .lead-key .kdot{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .lead-key .kdot.q{background:var(--red);}
+  .lead-key .kdot.g{background:var(--dteal);}
+  .lead-key .kdot.i{background:var(--silver);}
+
+  /* ai toggle + panel */
+  .ai-toggle{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:#eef3f6;user-select:none;}
+  .ai-toggle input{display:none;}
+  .ai-toggle .track{width:38px;height:22px;border-radius:22px;background:#4a5a68;position:relative;transition:background .2s;flex-shrink:0;}
+  .ai-toggle .knob{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s;}
+  .ai-toggle input:checked + .track{background:var(--dteal);}
+  .ai-toggle input:checked + .track .knob{left:19px;}
+  .ai-panel{display:none;background:linear-gradient(162deg,#f1faf7 0%,#fbfaf5 62%,#fdf3f3 140%);border:1px solid #d8ebe6;border-radius:18px;padding:26px 28px;margin-bottom:24px;box-shadow:0 1px 2px rgba(39,48,56,.04),0 14px 38px rgba(47,169,153,.07);}
+  body.ai-on .ai-panel{display:block;}
+  .ai-off-note{display:none;background:#fff;border:1px solid var(--line);border-left:3px solid var(--dteal);border-radius:14px;padding:18px 22px;margin-bottom:24px;color:var(--pewter);font-size:14px;line-height:1.6;}
+  body:not(.ai-on) .ai-off-note{display:block;}
+  .ai-off-note b{color:var(--ink);}
+  .ai-off-note .src{color:var(--teal-deep);font-weight:600;}
+  .ai-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .ai-ava{width:44px;height:44px;border-radius:50%;background:linear-gradient(145deg,#62e2d1,#2fa999);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 4px 12px rgba(47,169,153,.32);}
+  .ai-headtext{flex:1;}
+  .ai-name{font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .ai-tag{font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--teal-deep);background:#fff;border:1px solid var(--dteal);border-radius:20px;padding:3px 9px;}
+  .ai-status{font-size:12px;color:var(--teal-deep);display:flex;align-items:center;gap:7px;margin-top:3px;}
+  .ai-status .live{width:7px;height:7px;border-radius:50%;background:#2fa999;display:inline-block;box-shadow:0 0 0 3px rgba(47,169,153,.22);}
+  .asst-greeting{font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.3px;margin-bottom:8px;}
+  .asst-read{font-size:15.5px;line-height:1.65;color:var(--charcoal);max-width:780px;margin-bottom:22px;}
+  .asst-read b{color:var(--ink);font-weight:600;}
+  .asst-notes{background:#fff;border:1px solid #e7efec;border-radius:14px;padding:4px 22px;}
+  .asst-note{display:flex;gap:15px;align-items:flex-start;padding:17px 0;border-bottom:1px solid #f1f4f2;}
+  .asst-note:last-child{border-bottom:none;}
+  .asst-note .nicon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0;margin-top:1px;}
+  .asst-note.good .nicon{background:var(--teal-soft);color:var(--teal-deep);}
+  .asst-note.opp .nicon{background:#eef1f3;color:var(--charcoal);}
+  .asst-note.watch .nicon{background:var(--red-soft);color:#c5302f;}
+  .asst-note .nhl{font-weight:600;font-size:14.5px;color:var(--ink);margin-bottom:3px;}
+  .asst-note .ndt{font-size:13.5px;color:var(--pewter);line-height:1.55;}
+  .asst-note .ndt b{color:var(--charcoal);font-weight:600;}
+  .asst-sign{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--pewter);margin-top:18px;font-style:italic;}
+  .asst-sign .live{width:7px;height:7px;border-radius:50%;background:#2fa999;display:inline-block;box-shadow:0 0 0 3px rgba(47,169,153,.18);flex-shrink:0;}
+  .ai-ask{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:13px;}
+  .ai-chip{background:#fff;border:1px solid #cfeae4;border-radius:20px;padding:7px 14px;font-size:12.5px;color:var(--teal-deep);cursor:pointer;}
+  .ai-bar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #cfeae4;border-radius:12px;padding:9px 9px 9px 16px;}
+  .ai-bar .ph{flex:1;color:var(--pewter);font-size:13.5px;}
+  .ai-bar .send{width:34px;height:34px;border-radius:9px;background:var(--dteal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+  /* leads by source */
+  .srcrow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #f1eee7;}
+  .srcrow:last-child{border-bottom:none;}
+  .srcrow .nm{width:150px;font-weight:500;font-size:14px;flex-shrink:0;}
+  .srcrow .barwrap{flex:1;}
+  .srcrow .bartrack{background:#eef0ef;border-radius:5px;height:9px;width:100%;}
+  .srcrow .barfill{height:9px;border-radius:5px;background:var(--dteal);}
+  .srcrow .ct{width:188px;text-align:right;font-size:13px;color:var(--pewter);flex-shrink:0;}
+  .srcrow .ct b{color:var(--ink);font-weight:600;}
+  .srcrow .ct .rate{font-weight:600;color:var(--ink);}
+  .srcrow .ct .of{color:var(--silver);font-size:12px;}
+  .srcrow.top .barfill{background:var(--teal-deep);}
+  .srcbadge{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--teal-deep);background:var(--teal-soft);padding:2px 7px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+  .dlcard .srcrow .nm{width:280px;font-weight:500;}
+  .dlcard .srcrow .ct{width:130px;}
+  .dlcard .srcrow .ct .lead{color:var(--teal-deep);font-weight:600;}
+  .foot{max-width:1180px;margin:8px auto 0;padding:20px 34px 0;color:var(--pewter);font-size:12px;border-top:1px solid var(--line);}
+  .foot p{line-height:1.7;}
+  .foot b{color:var(--pewter);}
+
+  /* ---- responsive ---- */
+  @media (max-width:880px){
+    .wrap{padding:22px 18px 0;}
+    .topbar{padding:14px 18px;}
+    .foot{padding:18px 18px 0;}
+    .kpi-row{grid-template-columns:repeat(2,1fr);}
+    .row-2,.row-half{grid-template-columns:1fr;}
+    .ai-cards{grid-template-columns:1fr;gap:10px;}
+    .gloss-grid{grid-template-columns:1fr;gap:11px;}
+    .ai-c{display:flex;gap:13px;align-items:flex-start;}
+    .ai-c .ic{margin-bottom:0;}
+  }
+  @media (max-width:560px){
+    .brand .sub{display:none;}
+    .pill{display:none;}
+    .page-title h1{font-size:22px;}
+    .kpi-row{grid-template-columns:1fr;}
+    .kpi .big{font-size:36px;}
+    .donut-wrap{flex-direction:column;align-items:flex-start;gap:18px;}
+    .donut{margin:0 auto;}
+    .chart{gap:8px;height:170px;}
+    .bar{width:14px;}
+    .ai-summary{font-size:15px;}
+    .ai-c{display:block;}
+    .ai-c .ic{margin-bottom:11px;}
+    .srcrow{flex-wrap:wrap;gap:6px 12px;}
+    .srcrow .nm{width:auto;}
+    .srcrow .ct{width:auto;margin-left:auto;}
+    .srcrow .barwrap{flex-basis:100%;order:3;}
+    .section-head{align-items:flex-start;}
+  }
+</style>
+</head>
+<body class="ai-on">
+
+  <div class="topbar">
+    <div class="brand">
+      <span class="logo"><svg height="30" viewBox="0 0 549 192" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abri" style="display:block">
+<g clip-path="url(#abriLogoClip)">
+<path d="M540.175 48.9247H530.028V143.239H540.175V48.9247Z" fill="currentColor"/>
+<path d="M270.405 46.0668L224.078 143.239H235.284L270.405 69.7045L305.528 143.239H316.735L270.405 46.0668Z" fill="currentColor"/>
+<path d="M393.649 89.1423C399.232 84.6207 402.531 78.1676 402.531 71.6498C402.531 62.7528 395.953 48.9263 379.852 48.9263H334.075V143.24H379.649C394.104 143.24 408.207 130.64 408.207 114.09C408.207 103.928 402.534 94.2764 393.651 89.1438L393.649 89.1423ZM345.098 94.7874H378.078C388.746 94.7874 397.426 103.446 397.426 114.088C397.426 124.73 388.746 133.389 378.078 133.389H345.098V94.7874ZM378.845 84.5237H345.098V58.7744H378.845C385.962 58.7744 391.75 64.5504 391.75 71.6498C391.75 78.7493 385.96 84.5237 378.845 84.5237Z" fill="currentColor"/>
+<path d="M503.196 77.4119C503.196 61.6185 490.231 48.9247 473.973 48.9247H434.688V143.239H445.713V58.7744H473.264C483.844 58.7744 492.451 67.1359 492.451 77.4119C492.451 83.551 489.876 96.7281 467.696 96.7281C461.941 96.7281 458.395 95.5138 458.395 95.5138L496.612 143.239H509.661L478.952 105.433C495.335 102.599 503.2 89.1853 503.2 77.4119H503.196Z" fill="currentColor"/>
+<path d="M189.226 59.1899C184.481 47.9967 177.687 37.9438 169.035 29.313C160.383 20.6822 150.306 13.9044 139.085 9.17038C127.463 4.26554 115.123 1.78003 102.404 1.78003C89.6856 1.78003 77.345 4.26554 65.7249 9.16884C54.5043 13.9029 44.427 20.6807 35.7751 29.3115C27.1233 37.9423 20.329 47.9951 15.5834 59.1884C10.6666 70.7803 8.17505 83.0908 8.17505 95.78C8.17505 108.469 10.6666 120.778 15.5819 132.37C20.3274 143.563 27.1218 153.616 35.7736 162.247C44.4254 170.878 54.5028 177.656 65.7233 182.39C77.3435 187.293 89.6841 189.778 102.403 189.778C115.121 189.778 127.462 187.293 139.082 182.39C150.302 177.656 160.38 170.878 169.032 162.247C177.683 153.616 184.478 143.563 189.223 132.37C194.139 120.778 196.63 108.468 196.63 95.78C196.63 83.0924 194.139 70.7818 189.223 59.1899H189.226ZM23.416 129.064C18.9466 118.525 16.6819 107.326 16.6819 95.78C16.6819 84.2343 18.9482 73.0349 23.416 62.4957C27.7327 52.3136 33.9146 43.1672 41.7889 35.3121C49.6631 27.457 58.8303 21.2901 69.0387 16.984C79.6036 12.5254 90.8303 10.2662 102.404 10.2662C113.978 10.2662 125.205 12.527 135.77 16.984C145.977 21.2901 155.145 27.457 163.019 35.3121C170.894 43.1672 177.076 52.3121 181.392 62.4957C184.785 70.4986 186.908 78.8816 187.733 87.5078L74.9969 110.248L40.5408 154.974C33.2604 147.409 27.5044 138.702 23.4176 129.064H23.416ZM69.0387 174.576C60.0938 170.801 51.9464 165.599 44.7679 159.083L76.6477 117.702L123.474 178.698C116.635 180.423 109.586 181.294 102.404 181.294C90.8303 181.294 79.6036 179.033 69.0387 174.576ZM181.392 129.064C177.076 139.246 170.894 148.393 163.019 156.248C155.145 164.103 145.978 170.27 135.77 174.576C133.705 175.447 131.616 176.232 129.504 176.935L81.8314 114.836L188.093 93.4023C188.114 94.1933 188.126 94.9874 188.126 95.7816C188.126 107.327 185.86 118.527 181.392 129.066V129.064Z" fill="currentColor"/>
+</g>
+<defs>
+<clipPath id="abriLogoClip">
+<rect width="532" height="188" fill="white" transform="translate(8.17505 1.78003)"/>
+</clipPath>
+</defs>
+</svg></span>
+      <span class="sub">Website Performance &nbsp;·&nbsp; first-party tracking by Grain &amp; Mortar</span>
+    </div>
+    <div class="right">
+      <label class="ai-toggle"><input type="checkbox" checked onchange="document.body.classList.toggle('ai-on', this.checked)"><span class="track"><span class="knob"></span></span><span>✦ AI Insights</span></label>
+      <span class="pill">This Month <span class="car">▾</span></span>
+      <span class="badge-mock">Sample data · mockup</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="page-title">
+      <h1>Performance Overview</h1>
+      <span class="stamp">Updated May 29, 2026 · 9:14 AM</span>
+    </div>
+    <div class="uline"></div>
+    <p class="lead-note">A rough look at what your dashboard could show, built in two phases. Every card is labeled with where its data comes from. Every figure here is placeholder sample data.</p>
+
+    <div class="ai-panel">
+      <div class="ai-head">
+        <span class="ai-ava">✦</span>
+        <div class="ai-headtext">
+          <div class="ai-name">Abri Assistant <span class="ai-tag">AI · optional add-on</span></div>
+          <div class="ai-status"><span class="live"></span> Here to help you make sense of the month</div>
+        </div>
+      </div>
+      <div class="asst-greeting">Good morning 👋 Here's how things are looking.</div>
+      <p class="asst-read">It's been a solid month, and your ads are doing the heavy lifting. <b>Google Ads brought 18 of your 42 ready-to-talk leads</b>, your strongest source by a good margin, and your booked meetings are up 12%. A couple of things below are worth a closer look when you have a minute.</p>
+      <div class="asst-notes">
+        <div class="asst-note good">
+          <span class="nicon">✓</span>
+          <div>
+            <div class="nhl">What's going well</div>
+            <div class="ndt">Your ads are earning their keep. Google Ads is your single best source for people actually ready to talk, at a <b>47% quality rate</b>, ahead of every other channel.</div>
+          </div>
+        </div>
+        <div class="asst-note opp">
+          <span class="nicon">↗</span>
+          <div>
+            <div class="nhl">Worth leaning into</div>
+            <div class="ndt">The Divorcées page holds attention the longest, <b>3:12</b> on average. Sending more of your ad and email traffic there should turn into booked meetings.</div>
+          </div>
+        </div>
+        <div class="asst-note watch">
+          <span class="nicon">!</span>
+          <div>
+            <div class="nhl">Keep an eye on</div>
+            <div class="ndt">The Contact page is losing people, a <b>42% bounce rate</b>. A clearer headline or a booking button near the top would hold more of them.</div>
+          </div>
+        </div>
+      </div>
+      <div class="asst-sign"><span class="live"></span> I'll keep watching your numbers and let you know the moment something shifts.</div>
+    </div>
+    <div class="ai-off-note"><b>AI Insights is off,</b> and that's completely fine, the dashboard works fully without it. Your numbers are all still here. The quick read this month: <span class="src">Google Ads is your strongest source, 18 ready-to-talk leads at a 47% quality rate.</span> Turn the assistant on (top right) any time you'd like a friendly, plain-language summary like this each month.</div>
+
+    <!-- ============ PHASE 1 ============ -->
+    <div class="section-head">
+      <span class="phase p1">Phase 1</span>
+      <span class="ttl">Foundation</span>
+      <span class="desc">Live on data we capture on your site. No outside tools. Includes clearing the unused trackers that slow the site down.</span>
+    </div>
+
+    <div class="note-capture"><b>G&amp;M Capture.</b> Phase 1 replaces the site's current popups with G&amp;M Capture, our own lead tool. Your newsletter signups, guide downloads, and form fills come in as clean, structured data that flows straight into this dashboard, instead of living in a separate tool you have to wrangle.</div>
+
+    <div class="kpi-row">
+      <div class="card kpi">
+        <div class="chead"><span class="tag traf">Traffic</span></div>
+        <div class="big">1,240</div>
+        <div class="label">New visitors this month</div>
+        <div class="trend"><span class="up">▲ 9%</span><span class="sub">vs. last month</span></div>
+        <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,24 26,20 53,21 80,15 106,13 133,11 160,9" fill="none" stroke="#45C7B8" stroke-width="2.2"/></svg>
+        <div class="ytd"><span>Year to date</span><b>6,410</b></div>
+        <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking</b></div>
+      </div>
+
+      <div class="card kpi">
+        <div class="chead"><span class="tag gen">General lead</span></div>
+        <div class="big">56</div>
+        <div class="label">Newsletter signups</div>
+        <div class="trend"><span class="up">▲ 21%</span><span class="sub">vs. last month</span></div>
+        <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,28 26,24 53,22 80,17 106,16 133,10 160,7" fill="none" stroke="#45C7B8" stroke-width="2.2"/></svg>
+        <div class="ytd"><span>Year to date</span><b>233</b></div>
+        <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M Capture</b></div>
+      </div>
+
+      <div class="card kpi">
+        <div class="chead"><span class="tag intent">Intent signal</span></div>
+        <div class="big">47</div>
+        <div class="label">Schedule-call clicks</div>
+        <div class="trend"><span class="up">▲ 12%</span><span class="sub">vs. last month</span></div>
+        <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,26 26,24 53,28 80,18 106,14 133,12 160,8" fill="none" stroke="#5E6C78" stroke-width="2.2"/></svg>
+        <div class="ytd"><span>Year to date</span><b>198</b></div>
+        <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking</b></div>
+        <div class="upgrade"><span class="a">Phase 2 →</span> becomes confirmed bookings (Calendly)</div>
+      </div>
+
+      <div class="card kpi">
+        <div class="chead"><span class="tag intent">Intent signal</span></div>
+        <div class="big">63</div>
+        <div class="label">Phone-number clicks</div>
+        <div class="trend"><span class="up">▲ 6%</span><span class="sub">vs. last month</span></div>
+        <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,20 26,22 53,16 80,18 106,15 133,12 160,11" fill="none" stroke="#5E6C78" stroke-width="2.2"/></svg>
+        <div class="ytd"><span>Year to date</span><b>284</b></div>
+        <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking</b></div>
+        <div class="upgrade"><span class="a">Phase 2 →</span> becomes confirmed calls (CallRail)</div>
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="card">
+        <div class="chead"><h3>Top 5 Pages by Time on Page</h3></div>
+        <table>
+          <thead><tr><th>Page</th><th style="width:32%">Avg. time</th><th style="text-align:right">Views</th></tr></thead>
+          <tbody>
+            <tr><td class="pg">Divorcées<div class="timebar-track"><div class="timebar-fill" style="width:100%"></div></div></td><td class="time">3:12</td><td class="num">2,140</td></tr>
+            <tr><td class="pg">Our Services<div class="timebar-track"><div class="timebar-fill" style="width:87%"></div></div></td><td class="time">2:48</td><td class="num">1,690</td></tr>
+            <tr><td class="pg">About Abri<div class="timebar-track"><div class="timebar-fill" style="width:73%"></div></div></td><td class="time">2:21</td><td class="num">1,205</td></tr>
+            <tr><td class="pg">Retirement Planning<div class="timebar-track"><div class="timebar-fill" style="width:65%"></div></div></td><td class="time">2:05</td><td class="num">980</td></tr>
+            <tr><td class="pg">Contact<div class="timebar-track"><div class="timebar-fill" style="width:41%"></div></div></td><td class="time">1:18</td><td class="num">760</td></tr>
+          </tbody>
+        </table>
+        <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking</b></div>
+      </div>
+
+      <div class="card">
+        <div class="chead"><h3>Engagement</h3></div>
+        <div class="ministat">
+          <div class="gauge">
+            <div class="ring"><div class="in">42%</div></div>
+            <div><div class="sb" style="font-size:15px;">Bounce rate</div><div class="label" style="margin-top:2px;">Divorcées landing page</div></div>
+          </div>
+        </div>
+        <div class="ministat divtop"><div class="big">2:38</div><div class="label">Average time on site</div></div>
+        <div class="ministat divtop"><div class="big">14</div><div class="label">Guide downloads this month <span style="color:var(--teal-deep);font-weight:600;">· via G&amp;M Capture</span></div></div>
+        <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking + G&amp;M Capture</b></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px;">
+      <div class="chead"><h3>Leads by Source</h3></div>
+      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Ranked by qualified leads, the ones actually ready to talk, not just total clicks. The rate is how many of each source's leads were worth your team's time.</p>
+      <div class="srcrow top"><div class="nm">Google Ads <span class="srcbadge">Top performer</span></div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>18</b> qualified · <span class="rate">47%</span> <span class="of">of 38</span></div></div>
+      <div class="srcrow"><div class="nm">Organic search</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:67%"></div></div></div><div class="ct"><b>12</b> qualified · <span class="rate">39%</span> <span class="of">of 31</span></div></div>
+      <div class="srcrow"><div class="nm">Meta Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:44%"></div></div></div><div class="ct"><b>8</b> qualified · <span class="rate">36%</span> <span class="of">of 22</span></div></div>
+      <div class="srcrow"><div class="nm">Direct &amp; other</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:22%"></div></div></div><div class="ct"><b>4</b> qualified · <span class="rate">19%</span> <span class="of">of 21</span></div></div>
+      <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking + G&amp;M Capture</b></div>
+      <div class="upgrade"><span class="a">Phase 2 →</span> cost per lead by channel, from your Google Ads and Meta spend</div>
+    </div>
+
+    <div class="card dlcard" style="margin-bottom:18px;">
+      <div class="chead"><h3>Most popular downloads</h3></div>
+      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Each guide is unlocked with a short form, so every download is also a new lead with a name and an email attached, not an anonymous click.</p>
+      <div class="srcrow"><div class="nm">Retirement Readiness Checklist</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>6</b> downloads</div></div>
+      <div class="srcrow"><div class="nm">Divorce &amp; Your Finances Guide</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:67%"></div></div></div><div class="ct"><b>4</b> downloads</div></div>
+      <div class="srcrow"><div class="nm">401(k) Rollover Guide</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:33%"></div></div></div><div class="ct"><b>2</b> downloads</div></div>
+      <div class="srcrow"><div class="nm">Estate Planning Starter</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:33%"></div></div></div><div class="ct"><b>2</b> downloads</div></div>
+      <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M Capture</b> &nbsp;·&nbsp; <span class="lead" style="color:var(--teal-deep);font-weight:600;">14 downloads = 14 new leads this month</span></div>
+    </div>
+
+    <!-- ============ PHASE 2 ============ -->
+    <div class="p2-zone">
+      <div class="section-head s2">
+        <span class="phase p2">Phase 2</span>
+        <span class="ttl">Connected data &amp; history</span>
+        <span class="desc">Once we connect Calendly, CallRail, and Google Analytics. Confirms your ready-to-talk leads and adds year-over-year history.</span>
+      </div>
+
+      <div class="row-half">
+        <div class="card">
+          <div class="chead"><span class="tag qual" style="font-size:11.5px;font-weight:600;padding:4px 9px;border-radius:5px;">Qualified leads</span></div>
+          <div class="qbig">42</div>
+          <div class="qlabel">Confirmed, ready to talk · this month</div>
+          <div class="qrow"><b>18</b><span class="qn">Meetings booked</span><span class="qv">via Calendly</span></div>
+          <div class="qrow"><b>24</b><span class="qn">Office calls</span><span class="qv">via CallRail</span></div>
+          <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;Calendly + CallRail</b></div>
+        </div>
+
+        <div class="card">
+          <div class="chead"><h3>Lead Mix: This Month</h3></div>
+          <div class="donut-wrap">
+            <div class="donut"><div class="hole"><b>112</b><span>Total leads</span></div></div>
+            <div class="leadlist">
+              <div class="li"><i class="sw-q"></i><div><div class="t">Qualified · 42</div><div class="d">Booked meetings + office calls</div></div><span class="n">38%</span></div>
+              <div class="li"><i class="sw-g"></i><div><div class="t">General · 70</div><div class="d">Newsletter + guide downloads</div></div><span class="n">62%</span></div>
+            </div>
+          </div>
+          <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;G&amp;M Capture + Calendly + CallRail</b></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:0;">
+        <div class="chead"><h3>New Visitors: This Year vs. Last Year</h3></div>
+        <div class="chart">
+          <div class="bargroup"><div class="bar last" style="height:63%"></div><div class="bar this" style="height:75%"></div><span class="mlabel">Jan</span></div>
+          <div class="bargroup"><div class="bar last" style="height:70%"></div><div class="bar this" style="height:83%"></div><span class="mlabel">Feb</span></div>
+          <div class="bargroup"><div class="bar last" style="height:68%"></div><div class="bar this" style="height:80%"></div><span class="mlabel">Mar</span></div>
+          <div class="bargroup"><div class="bar last" style="height:78%"></div><div class="bar this" style="height:91%"></div><span class="mlabel">Apr</span></div>
+          <div class="bargroup"><div class="bar last" style="height:81%"></div><div class="bar this" style="height:95%"></div><span class="mlabel">May</span></div>
+          <div class="bargroup"><div class="bar last" style="height:85%"></div><div class="bar this" style="height:95%"></div><span class="mlabel">Jun</span></div>
+        </div>
+        <div class="legend"><span><i class="sw-last"></i> Last year</span><span><i class="sw-this"></i> This year</span></div>
+        <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;Google Analytics history</b></div>
+      </div>
+
+      <div style="font-size:12.5px;color:var(--teal-deep);line-height:1.55;margin-top:18px;">Optional: if your team decides you want to test different versions of a page (A/B testing) to lift these numbers, we can add that later. We'll check on your interest before scoping it.</div>
+    </div>
+
+    <div class="glossary card">
+      <div class="chead"><h3>Glossary</h3></div>
+      <div class="lead-key">
+        <div class="klabel">Your lead types, in plain terms</div>
+        <div class="lk"><span class="kdot q"></span><span><b>Qualified lead: ready to talk.</b> They booked a meeting, called the office, or used the contact form to ask you to reach out. These are your warmest leads.</span></div>
+        <div class="lk"><span class="kdot g"></span><span><b>General lead: just looking.</b> They signed up for the newsletter or downloaded a guide. Worth nurturing, but not ready to talk yet.</span></div>
+        <div class="lk"><span class="kdot i"></span><span><b>Intent signal: on their way.</b> They clicked to book or tapped your phone number, but have not finished yet. A sign a qualified lead may be coming.</span></div>
+      </div>
+      <div class="gloss-grid">
+        <div class="gi"><b>New visitors.</b> People landing on your site for the first time, rather than returning.</div>
+        <div class="gi"><b>Schedule-call clicks.</b> How many times visitors clicked to open your Calendly booking page.</div>
+        <div class="gi"><b>Phone-number clicks.</b> How many times visitors tapped your phone number to start a call.</div>
+        <div class="gi"><b>Bounce rate.</b> The share of visitors who arrive on a page and leave without visiting another.</div>
+        <div class="gi"><b>Time on page.</b> How long, on average, visitors spend on a page before moving on.</div>
+        <div class="gi"><b>Year-over-year.</b> This year's numbers next to the same period last year, so you can see real growth.</div>
+        <div class="gi"><b>A/B testing.</b> Showing two versions of a page to see which one gets more people to act.</div>
+        <div class="gi"><b>G&amp;M Capture.</b> Our own popup and form tool that replaces the site's current popups, capturing signups and form fills as clean data.</div>
+        <div class="gi"><b>G&amp;M site tracking.</b> Our lightweight tracking built into your site that records visits, clicks, and time on page without slowing things down.</div>
+        <div class="gi"><b>Google Analytics.</b> Google's website statistics tool, used here for your past history and comparisons.</div>
+        <div class="gi"><b>Calendly.</b> The scheduling tool your visitors use to book meetings.</div>
+        <div class="gi"><b>CallRail.</b> A phone-tracking tool that records calls coming from the website.</div>
+        <div class="gi"><b>Leads by source.</b> A breakdown of where your leads came from, such as Google Ads, Meta, organic search, or direct visits.</div>
+        <div class="gi"><b>AI Insights.</b> An optional assistant that reads your dashboard and explains, in plain language, what the numbers mean and what to do next.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p style="margin-bottom:10px;"><b>Two-phase plan.</b> Phase 1 delivers a working dashboard on data we capture and own directly through G&amp;M Capture and our site tracking (your traffic, top-of-funnel leads, and engagement), plus the speed cleanup. Phase 2 connects Calendly, CallRail, and Google Analytics to confirm your ready-to-talk leads and add year-over-year history. Optional A/B testing can come later if you want it. You see Phase 1 working before deciding on Phase 2.</p>
+    <p>Illustrative mockup for scoping. All numbers are placeholder sample data, not live Abri figures.</p>
+    <p style="margin-top:12px;font-size:11px;"><a href="https://ericdowns.github.io/abri-tracking-dashboard/stack.html" style="color:var(--silver);text-decoration:none;border-bottom:1px dotted var(--silver);">Build services &amp; integrations →</a></p>
+  </div>
+
+</body>
+</html>
