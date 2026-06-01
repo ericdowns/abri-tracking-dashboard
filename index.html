@@ -34,6 +34,12 @@
   .uline{width:52px;height:4px;background:var(--red);border-radius:3px;margin:10px 0 16px;}
   .lead-note{color:var(--pewter);font-size:14.5px;margin-bottom:26px;max-width:680px;}
 
+  .spotlight{display:flex;align-items:flex-start;gap:16px;background:#fff;border:1.5px solid var(--dteal);border-radius:14px;padding:18px 22px;margin-bottom:24px;box-shadow:var(--shadow);}
+  .spotlight .sp-ic{width:40px;height:40px;border-radius:11px;background:var(--teal-soft);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+  .spotlight .sp-label{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--teal-deep);margin-bottom:5px;}
+  .spotlight .sp-text{font-size:15.5px;color:var(--ink);line-height:1.5;font-weight:500;}
+  .spotlight .sp-text b{font-weight:600;}
+
   .phase{font-size:10.5px;font-weight:600;letter-spacing:.4px;padding:4px 10px;border-radius:20px;white-space:nowrap;text-transform:uppercase;}
   .phase.p1{background:var(--dteal);color:#fff;}
   .phase.p2{background:#fff;color:var(--teal-deep);border:1.5px solid var(--dteal);}
@@ -190,8 +196,15 @@
   .srcrow .barwrap{flex:1;}
   .srcrow .bartrack{background:#eef0ef;border-radius:5px;height:9px;width:100%;}
   .srcrow .barfill{height:9px;border-radius:5px;background:var(--dteal);}
-  .srcrow .ct{width:160px;text-align:right;font-size:13px;color:var(--pewter);flex-shrink:0;}
+  .srcrow .ct{width:188px;text-align:right;font-size:13px;color:var(--pewter);flex-shrink:0;}
   .srcrow .ct b{color:var(--ink);font-weight:600;}
+  .srcrow .ct .rate{font-weight:600;color:var(--ink);}
+  .srcrow .ct .of{color:var(--silver);font-size:12px;}
+  .srcrow.top .barfill{background:var(--teal-deep);}
+  .srcbadge{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--teal-deep);background:var(--teal-soft);padding:2px 7px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+  .dlcard .srcrow .nm{width:280px;font-weight:500;}
+  .dlcard .srcrow .ct{width:130px;}
+  .dlcard .srcrow .ct .lead{color:var(--teal-deep);font-weight:600;}
   .foot{max-width:1180px;margin:8px auto 0;padding:20px 34px 0;color:var(--pewter);font-size:12px;border-top:1px solid var(--line);}
   .foot p{line-height:1.7;}
   .foot b{color:var(--pewter);}
@@ -263,6 +276,14 @@
     </div>
     <div class="uline"></div>
     <p class="lead-note">A rough look at what your dashboard could show, built in two phases. Every card is labeled with where its data comes from. Every figure here is placeholder sample data.</p>
+
+    <div class="spotlight">
+      <div class="sp-ic">★</div>
+      <div class="sp-body">
+        <div class="sp-label">Your best source this month</div>
+        <div class="sp-text"><b>Google Ads</b> brought <b>18 ready-to-talk leads</b>, your most of any source, at a <b>47% quality rate</b>. Organic search is the strong runner-up. Direct traffic is high in volume but rarely ready to talk yet.</div>
+      </div>
+    </div>
 
     <div class="ai-panel">
       <div class="ai-head">
@@ -381,13 +402,23 @@
 
     <div class="card" style="margin-bottom:18px;">
       <div class="chead"><h3>Leads by Source</h3></div>
-      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Where your leads came from, including the visitors your Google and Meta ads brought in.</p>
-      <div class="srcrow"><div class="nm">Google Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>38</b> leads · 18 qualified</div></div>
-      <div class="srcrow"><div class="nm">Organic search</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:82%"></div></div></div><div class="ct"><b>31</b> leads · 12 qualified</div></div>
-      <div class="srcrow"><div class="nm">Meta Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:58%"></div></div></div><div class="ct"><b>22</b> leads · 8 qualified</div></div>
-      <div class="srcrow"><div class="nm">Direct &amp; other</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:55%"></div></div></div><div class="ct"><b>21</b> leads · 4 qualified</div></div>
+      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Ranked by qualified leads, the ones actually ready to talk, not just total clicks. The rate is how many of each source's leads were worth your team's time.</p>
+      <div class="srcrow top"><div class="nm">Google Ads <span class="srcbadge">Top performer</span></div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>18</b> qualified · <span class="rate">47%</span> <span class="of">of 38</span></div></div>
+      <div class="srcrow"><div class="nm">Organic search</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:67%"></div></div></div><div class="ct"><b>12</b> qualified · <span class="rate">39%</span> <span class="of">of 31</span></div></div>
+      <div class="srcrow"><div class="nm">Meta Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:44%"></div></div></div><div class="ct"><b>8</b> qualified · <span class="rate">36%</span> <span class="of">of 22</span></div></div>
+      <div class="srcrow"><div class="nm">Direct &amp; other</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:22%"></div></div></div><div class="ct"><b>4</b> qualified · <span class="rate">19%</span> <span class="of">of 21</span></div></div>
       <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking + G&amp;M Capture</b></div>
       <div class="upgrade"><span class="a">Phase 2 →</span> cost per lead by channel, from your Google Ads and Meta spend</div>
+    </div>
+
+    <div class="card dlcard" style="margin-bottom:18px;">
+      <div class="chead"><h3>Most popular downloads</h3></div>
+      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Each guide is unlocked with a short form, so every download is also a new lead with a name and an email attached, not an anonymous click.</p>
+      <div class="srcrow"><div class="nm">Retirement Readiness Checklist</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>6</b> downloads</div></div>
+      <div class="srcrow"><div class="nm">Divorce &amp; Your Finances Guide</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:67%"></div></div></div><div class="ct"><b>4</b> downloads</div></div>
+      <div class="srcrow"><div class="nm">401(k) Rollover Guide</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:33%"></div></div></div><div class="ct"><b>2</b> downloads</div></div>
+      <div class="srcrow"><div class="nm">Estate Planning Starter</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:33%"></div></div></div><div class="ct"><b>2</b> downloads</div></div>
+      <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M Capture</b> &nbsp;·&nbsp; <span class="lead" style="color:var(--teal-deep);font-weight:600;">14 downloads = 14 new leads this month</span></div>
     </div>
 
     <!-- ============ PHASE 2 ============ -->
