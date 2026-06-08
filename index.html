@@ -156,6 +156,11 @@
   .lead-key .kdot.q{background:var(--red);}
   .lead-key .kdot.g{background:var(--dteal);}
   .lead-key .kdot.i{background:var(--silver);}
+  details.glossary summary{cursor:pointer;list-style:none;font-size:14px;font-weight:600;color:var(--charcoal);display:flex;align-items:center;gap:8px;}
+  details.glossary summary::-webkit-details-marker{display:none;}
+  details.glossary summary::after{content:"▾  open";color:var(--pewter);font-size:12px;font-weight:500;margin-left:auto;}
+  details.glossary[open] summary::after{content:"▴  close";}
+  details.glossary[open] summary{margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:14px;}
 
   /* ai toggle + panel */
   .ai-toggle{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:#eef3f6;user-select:none;}
@@ -283,7 +288,7 @@
       <span class="stamp">Updated May 29, 2026 · 9:14 AM</span>
     </div>
     <div class="uline"></div>
-    <p class="lead-note">A rough look at what your dashboard could show, built in two phases. Every card is labeled with where its data comes from. Every figure here is placeholder sample data.</p>
+    <p class="lead-note">A rough look at what your dashboard could show: what is live from day one, and what keeps building over time with your ongoing service. Every card is labeled with where its data comes from. Every figure here is placeholder sample data.</p>
 
     <div class="ai-panel">
       <div class="ai-head">
@@ -324,12 +329,11 @@
 
     <!-- ============ PHASE 1 ============ -->
     <div class="section-head">
-      <span class="phase p1">Phase 1</span>
-      <span class="ttl">Foundation</span>
-      <span class="desc">Live on data we capture on your site. No outside tools. Includes clearing the unused trackers that slow the site down.</span>
+      <span class="ttl">What your dashboard shows from day one</span>
+      <span class="desc">Live on data we capture on your own site. Includes clearing the unused trackers that slow the site down.</span>
     </div>
 
-    <div class="note-capture"><b>G&amp;M Capture.</b> Phase 1 replaces the site's current popups with G&amp;M Capture, our own lead tool. Your newsletter signups, guide downloads, and form fills come in as clean, structured data that flows straight into this dashboard, instead of living in a separate tool you have to wrangle.</div>
+    <div class="note-capture"><b>G&amp;M Capture.</b> We replace the site's current popups with G&amp;M Capture, our own lead tool. Your newsletter signups, guide downloads, and form fills come in as clean, structured data that flows straight into this dashboard, instead of living in a separate tool you have to wrangle.</div>
 
     <div class="kpi-row">
       <div class="card kpi">
@@ -360,7 +364,7 @@
         <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,26 26,24 53,28 80,18 106,14 133,12 160,8" fill="none" stroke="#5E6C78" stroke-width="2.2"/></svg>
         <div class="ytd"><span>Year to date</span><b>198</b></div>
         <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking</b></div>
-        <div class="upgrade"><span class="a">Phase 2 →</span> becomes confirmed bookings (Calendly)</div>
+        <div class="upgrade"><span class="a">Over time →</span> becomes confirmed bookings, once Calendly is connected</div>
       </div>
 
       <div class="card kpi">
@@ -371,7 +375,7 @@
         <svg class="spark" width="100%" height="34" viewBox="0 0 160 34" preserveAspectRatio="none"><polyline points="0,20 26,22 53,16 80,18 106,15 133,12 160,11" fill="none" stroke="#5E6C78" stroke-width="2.2"/></svg>
         <div class="ytd"><span>Year to date</span><b>284</b></div>
         <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking</b></div>
-        <div class="upgrade"><span class="a">Phase 2 →</span> becomes confirmed calls (CallRail)</div>
+        <div class="upgrade"><span class="a">Over time →</span> becomes confirmed calls, once CallRail is connected</div>
       </div>
     </div>
 
@@ -413,7 +417,7 @@
       <div class="srcrow"><div class="nm">Meta Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:58%"></div></div></div><div class="ct"><b>22</b> leads</div></div>
       <div class="srcrow"><div class="nm">Direct &amp; other</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:55%"></div></div></div><div class="ct"><b>21</b> leads</div></div>
       <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking + G&amp;M Capture</b></div>
-      <div class="upgrade"><span class="a">Phase 2 →</span> confirms which of these became booked meetings or office calls, by source</div>
+      <div class="upgrade"><span class="a">Over time →</span> confirms which of these became booked meetings or office calls, by source</div>
     </div>
 
     <div class="card dlcard" style="margin-bottom:18px;">
@@ -429,12 +433,11 @@
     <!-- ============ PHASE 2 ============ -->
     <div class="p2-zone">
       <div class="section-head s2">
-        <span class="phase p2">Phase 2</span>
-        <span class="ttl">Connected data &amp; history</span>
-        <span class="desc">Once we connect Calendly, CallRail, and Google Analytics. Confirms your ready-to-talk leads and adds year-over-year history.</span>
+        <span class="ttl">Grows over time, with your monthly service</span>
+        <span class="desc">As your service runs, we connect your scheduling and call tools and let history build, so your reporting keeps getting richer.</span>
       </div>
 
-      <div class="p2-banner"><b>Not included in Phase 1.</b> This section is a preview of what turns on later, once we connect Calendly, CallRail, and Google Analytics (which need access to those accounts). The cards below are grayed out on purpose and use sample numbers. Phase 1 is built so these simply switch on later, with no rebuild.</div>
+      <div class="p2-banner"><b>This is where your monthly service keeps paying off.</b> As it runs, we connect your scheduling and call tools (Calendly, CallRail) and let history build, so the dashboard gets richer over time. It is part of your ongoing service, not a separate project. The cards below are grayed out because they fill in as the service runs, shown here with sample numbers. Everything is built so they switch on with no rebuild.</div>
 
       <div class="row-half">
         <div class="card">
@@ -463,16 +466,16 @@
         <div class="chead"><h3>New Visitors: This Year vs. Last Year</h3></div>
         <div class="p2-marker">
           <b>Year-over-year history needs time to build.</b>
-          We start collecting from day one, so a real this-year-vs-last-year comparison fills in after about 12 months of tracking (probably). It can show sooner only if we are able to connect your existing Google Analytics history, which is a Phase 2 step that needs account access.
+          We start collecting from day one, so a real this-year-vs-last-year comparison fills in after about 12 months of tracking (probably). Your monthly service keeps it building and refines it as it grows. It can show sooner if we are able to connect your existing Google Analytics history.
         </div>
-        <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;Our own tracking over time, or Google Analytics history (Phase 2)</b></div>
+        <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;Our own tracking over time, or your Google Analytics history</b></div>
       </div>
 
       <div style="font-size:12.5px;color:var(--teal-deep);line-height:1.55;margin-top:18px;">Optional: if your team decides you want to test different versions of a page (A/B testing) to lift these numbers, we can add that later. We'll check on your interest before scoping it.</div>
     </div>
 
-    <div class="glossary card">
-      <div class="chead"><h3>Glossary</h3></div>
+    <details class="glossary card">
+      <summary>Glossary &amp; lead types</summary>
       <div class="lead-key">
         <div class="klabel">Your lead types, in plain terms</div>
         <div class="lk"><span class="kdot q"></span><span><b>Qualified lead: ready to talk.</b> They booked a meeting, called the office, or used the contact form to ask you to reach out. These are your warmest leads.</span></div>
@@ -494,13 +497,12 @@
         <div class="gi"><b>CallRail.</b> A phone-tracking tool that records calls coming from the website.</div>
         <div class="gi"><b>Leads by source.</b> A breakdown of where your leads came from, such as Google Ads, Meta, organic search, or direct visits.</div>
       </div>
-    </div>
+    </details>
   </div>
 
   <div class="foot">
-    <p style="margin-bottom:10px;"><b>Two-phase plan.</b> Phase 1 delivers a working dashboard on data we capture and own directly through G&amp;M Capture and our site tracking (your traffic, top-of-funnel leads, and engagement), plus the speed cleanup. Phase 2 connects Calendly, CallRail, and Google Analytics to confirm your ready-to-talk leads and add year-over-year history. Optional A/B testing can come later if you want it. You see Phase 1 working before deciding on Phase 2.</p>
+    <p style="margin-bottom:10px;"><b>How it works.</b> At launch you get a working dashboard on data we capture and own directly through G&amp;M Capture and our site tracking (your traffic, leads, and engagement), plus the speed cleanup. From there, your monthly service keeps it running and growing: we connect your scheduling and call tools to confirm your ready-to-talk leads, and history builds over time for year-over-year comparisons. It is all part of the ongoing service, not a separate project.</p>
     <p>Illustrative mockup for scoping. All numbers are placeholder sample data, not live Abri figures.</p>
-    <p style="margin-top:12px;font-size:11px;"><a href="https://ericdowns.github.io/abri-tracking-dashboard/stack.html" style="color:var(--silver);text-decoration:none;border-bottom:1px dotted var(--silver);">Build services &amp; integrations →</a></p>
   </div>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abri Tracking Dashboard: Build Services (Internal)</title>
+<title>Abri Pulse: Build Services (Internal)</title>
 <style>
   @font-face{font-family:'Roobert';src:url('./fonts/Roobert-Regular.woff2') format('woff2'),url('./fonts/Roobert-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
   @font-face{font-family:'Roobert';src:url('./fonts/Roobert-SemiBold.woff2') format('woff2'),url('./fonts/Roobert-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap;}
@@ -49,6 +49,7 @@
   .st.pending{background:var(--gold-soft);color:var(--gold-deep);}
   .st.build{background:#e7e9ec;color:var(--charcoal);}
   .st.cut{background:var(--red-soft);color:#c5302f;}
+  .st.na{background:#eceef0;color:var(--pewter);}
 
   .foot{max-width:1180px;margin:22px auto 0;padding:18px 34px 0;color:var(--silver);font-size:12px;border-top:1px solid var(--line);}
   .foot a{color:var(--teal-deep);}
@@ -77,20 +78,21 @@
 </clipPath>
 </defs>
 </svg></span>
-      <span class="sub">Tracking dashboard &nbsp;·&nbsp; build services &amp; integrations</span>
+      <span class="sub">Pulse &nbsp;·&nbsp; build services &amp; integrations</span>
     </div>
     <span class="badge-int">Internal · G&amp;M reference</span>
   </div>
 
   <div class="wrap">
-    <h1>Build Services &amp; Integrations</h1>
+    <h1>Pulse: Build Services &amp; Integrations</h1>
     <div class="uline"></div>
-    <p class="lead">Every service this tracking build touches, whether it has an API or CLI we can use, whether we have access yet, and the role it plays. <b>This is an internal Grain &amp; Mortar reference,</b> not part of the client dashboard. Anything marked Grain &amp; Mortar is something we build and own, including our own tracking engine, which does not exist yet.</p>
+    <p class="lead">Every service the Pulse build touches, whether it has an API or CLI we can use, whether we have access yet, and the role it plays. <b>This is an internal Grain &amp; Mortar reference,</b> not part of the client dashboard. Pulse is a standalone TypeScript and React app on Vercel; a first-party script on the Abri WordPress site feeds it. Anything marked Grain &amp; Mortar is something we build and own, including the tracking engine and the dashboard app, which do not exist yet. "At launch" is live day one; "Ongoing" is connected and refined as part of the monthly service.</p>
 
     <div class="legend">
       <span><span class="st have">Have it</span> ready to use</span>
       <span><span class="st build">To build</span> our work, not done yet</span>
       <span><span class="st pending">Need access</span> waiting on a key or login</span>
+      <span><span class="st na">Not integrated</span> channel-only or held for later</span>
       <span><span class="st cut">Removing</span> being cut</span>
     </div>
 
@@ -108,79 +110,100 @@
         <tbody>
           <tr>
             <td><div class="svc">G&amp;M Site Tracking</div><div class="prov ours">Grain &amp; Mortar (build)</div></td>
-            <td class="api">None needed. We build it: a lightweight first-party script plus data tables in WordPress.</td>
+            <td class="api">None needed. We build it: a lightweight first-party script on the Abri site that sends events to Pulse's data store.</td>
             <td><span class="st build">To build</span></td>
-            <td class="role">The core engine. Visitors, time on page, bounce, top pages, the intent-signal clicks (schedule-call, phone), and channel attribution (reads the ad tag on landing). The heart of the dashboard.</td>
-            <td class="phase">Phase 1</td>
+            <td class="role">The core engine. Visitors, time on page, bounce, top pages, the intent-signal clicks (schedule-call, phone), and channel attribution (reads the ad tag on landing). Feeds Pulse.</td>
+            <td class="phase">At launch</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Pulse Dashboard</div><div class="prov ours">Grain &amp; Mortar (build)</div></td>
+            <td class="api">We build it. TypeScript and React app, hosted on Vercel, reading the tracked data through its own data API.</td>
+            <td><span class="st build">To build</span></td>
+            <td class="role">The dashboard itself: the cards, charts, date ranges, leads by source, and lead mix. A standalone app, not inside WordPress.</td>
+            <td class="phase">At launch</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Vercel</div><div class="prov ours">Grain &amp; Mortar account</div></td>
+            <td class="api">Platform plus CLI. Yes.</td>
+            <td><span class="st have">Have it</span></td>
+            <td class="role">Hosts the Pulse app and the data layer it reads from. Abri carries the hosting cost.</td>
+            <td class="phase">At launch</td>
           </tr>
           <tr>
             <td><div class="svc">G&amp;M Capture</div><div class="prov ours">Grain &amp; Mortar (built)</div></td>
             <td class="api">Our own WordPress plugin. Has its own data store plus admin and WP-CLI.</td>
             <td><span class="st have">Have it</span></td>
-            <td class="role">Replaces the site's current popups. Captures newsletter signups, guide downloads, and form fills as clean lead data. The General-lead engine. Already built, needs wiring into the dashboard.</td>
-            <td class="phase">Phase 1</td>
+            <td class="role">Replaces the site's current popups. Captures newsletter signups, guide downloads, and form fills as clean lead data. The General-lead engine. Already built, needs wiring into Pulse.</td>
+            <td class="phase">At launch</td>
           </tr>
           <tr>
-            <td><div class="svc">WordPress + ACF</div><div class="prov ours">Grain &amp; Mortar built site</div></td>
-            <td class="api">WP-CLI and REST. ACF for settings.</td>
+            <td><div class="svc">WordPress + ACF</div><div class="prov">Abri site (G&amp;M built)</div></td>
+            <td class="api">WP-CLI and REST.</td>
             <td><span class="st have">Have it</span></td>
-            <td class="role">The home for everything. Hosts the dashboard, stores the first-party event data, and holds the editable settings.</td>
-            <td class="phase">Phase 1</td>
+            <td class="role">Abri's existing site, where the first-party tracking script and G&amp;M Capture run. This is the site we measure, not where the dashboard lives.</td>
+            <td class="phase">At launch</td>
           </tr>
           <tr>
             <td><div class="svc">Mailchimp</div><div class="prov">Abri</div></td>
             <td class="api">Marketing API. Yes.</td>
             <td><span class="st have">Have it</span></td>
-            <td class="role">Newsletter audience. G&amp;M Capture sends signups here behind the scenes. Key and audience already confirmed.</td>
-            <td class="phase">Phase 1</td>
+            <td class="role">Newsletter audience. G&amp;M Capture sends signups here behind the scenes. Key and audience already confirmed (us18).</td>
+            <td class="phase">At launch</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Ninja Forms</div><div class="prov">Abri (existing)</div></td>
+            <td class="api">Submissions captured on the site.</td>
+            <td><span class="st have">Have it</span></td>
+            <td class="role">Abri's existing forms. Submissions are captured as leads and flow into Pulse.</td>
+            <td class="phase">At launch</td>
           </tr>
           <tr>
             <td><div class="svc">Calendly</div><div class="prov">Abri</div></td>
             <td class="api">REST API plus booking webhooks. Paid plans only.</td>
             <td><span class="st pending">Need access</span></td>
-            <td class="role">Confirmed meeting bookings, the top-ranked qualified lead. Without it we can only count clicks toward booking, not completed meetings.</td>
-            <td class="phase">Phase 2</td>
+            <td class="role">Confirmed meeting bookings, the top-ranked qualified lead. Connected as part of the ongoing service. Until then, Pulse counts schedule-call clicks first-party.</td>
+            <td class="phase">Ongoing</td>
           </tr>
           <tr>
             <td><div class="svc">CallRail</div><div class="prov">Abri / ad team</div></td>
             <td class="api">REST API plus post-call webhooks. Yes.</td>
             <td><span class="st pending">Need access</span></td>
-            <td class="role">Confirmed phone calls, the second qualified lead. Decision still open: track clicks (we own) or real connected calls (needs this). Post-call data arrives up to about 20 minutes after the call.</td>
-            <td class="phase">Phase 2</td>
+            <td class="role">Confirmed phone calls. Pulse tracks phone-number clicks first-party at launch (we own that); CallRail upgrades those to confirmed connected calls. Post-call data arrives up to about 20 minutes after the call.</td>
+            <td class="phase">Ongoing</td>
           </tr>
           <tr>
             <td><div class="svc">Google Analytics (GA4)</div><div class="prov">Abri / ad team</div></td>
             <td class="api">GA4 Data API. Yes.</td>
             <td><span class="st pending">Need access</span></td>
-            <td class="role">Backfills the year-over-year history. Without it, year-over-year only builds from launch forward.</td>
-            <td class="phase">Phase 2</td>
+            <td class="role">Backfills year-over-year history. Without it, year-over-year builds from our own tracking after about 12 months. Refined over time as part of the ongoing service.</td>
+            <td class="phase">Ongoing</td>
           </tr>
           <tr>
             <td><div class="svc">Google Ads</div><div class="prov">Ad team</div></td>
-            <td class="api">Google Ads API. Yes.</td>
-            <td><span class="st pending">Need access</span></td>
-            <td class="role">Ad spend, for cost-per-lead by channel. Note: attribution of paid traffic is captured first-party from the ad link, so only the spend figures need this. The conversion pixel stays with the ad team. Access needs a Google-approved developer token, a heavier step than a simple key.</td>
-            <td class="phase">Phase 2</td>
+            <td class="api">Not used in this build.</td>
+            <td><span class="st na">Not integrated</span></td>
+            <td class="role">Paid traffic from Google Ads is attributed first-party by reading the ad link on landing (channel attribution, at launch). We do not connect to the Google Ads API and we do not pull spend. Cost-per-lead is out of scope. The conversion pixel stays with the ad team.</td>
+            <td class="phase">Channel only</td>
           </tr>
           <tr>
             <td><div class="svc">Meta Ads</div><div class="prov">Ad team</div></td>
-            <td class="api">Meta Marketing API. Yes.</td>
-            <td><span class="st pending">Need access</span></td>
-            <td class="role">Ad spend, for cost-per-lead. Meta-sourced traffic is attributed first-party from the link. The Meta pixel stays with the ad team.</td>
-            <td class="phase">Phase 2</td>
-          </tr>
-          <tr>
-            <td><div class="svc">AI Insights (Abri Assistant)</div><div class="prov ours">Grain &amp; Mortar (build)</div></td>
-            <td class="api">Claude (Anthropic) API. We have it.</td>
-            <td><span class="st build">To build</span></td>
-            <td class="role">Optional layer that reads the dashboard and explains the numbers in plain language. Priced as a separate add-on.</td>
-            <td class="phase">Optional</td>
+            <td class="api">Not used in this build.</td>
+            <td><span class="st na">Not integrated</span></td>
+            <td class="role">Meta-sourced traffic is attributed first-party from the link (at launch). No API integration, no spend pull, cost-per-lead out of scope. The Meta pixel stays with the ad team.</td>
+            <td class="phase">Channel only</td>
           </tr>
           <tr>
             <td><div class="svc">Google Tag Manager</div><div class="prov">Ad team</div></td>
             <td class="api">Tag Manager API exists, but we are not building on it.</td>
             <td><span class="st pending">Ad team owns</span></td>
-            <td class="role">The current speed bottleneck. We coordinate trimming and deferring the tags loaded through it. It is not a data source for us.</td>
+            <td class="role">The current speed bottleneck. We coordinate trimming and deferring the tags loaded through it. Not a data source for us.</td>
+            <td class="phase">Cleanup</td>
+          </tr>
+          <tr>
+            <td><div class="svc">Vector</div><div class="prov">Ad team</div></td>
+            <td class="api">n/a</td>
+            <td><span class="st cut">Removing</span></td>
+            <td class="role">B2B visitor de-anonymization pixel (222 KB on every page). Removed as part of the speed cleanup.</td>
             <td class="phase">Cleanup</td>
           </tr>
           <tr>
@@ -190,13 +213,20 @@
             <td class="role">Heatmap tool Zack never uses. Removed as part of the speed cleanup.</td>
             <td class="phase">Cleanup</td>
           </tr>
+          <tr>
+            <td><div class="svc">AI Insights (Pulse Assistant)</div><div class="prov ours">Grain &amp; Mortar (build)</div></td>
+            <td class="api">Claude (Anthropic) API.</td>
+            <td><span class="st na">Not in v1</span></td>
+            <td class="role">Optional plain-language layer that reads the dashboard. Held out of this version. A separate add-on if Abri wants it later; any AI usage cost would be Abri's.</td>
+            <td class="phase">Later</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="foot">
-    <p>Internal build reference for the Abri tracking dashboard. Client mockup lives at <a href="https://ericdowns.github.io/abri-tracking-dashboard/index.html">the dashboard URL</a>. Sample and planning data only. Every API above verified against official documentation on 2026-05-29.</p>
+    <p>Internal build reference for Pulse (the Abri tracking dashboard). Client mockup lives at <a href="https://ericdowns.github.io/abri-tracking-dashboard/index.html">the dashboard URL</a>. Sample and planning data only. APIs verified against official documentation on 2026-05-29. Updated 2026-06-08: dashboard is a standalone Vercel/React app; AI and cost-per-lead held out of this version; connected tools framed as ongoing-service work.</p>
   </div>
 
 </body>
