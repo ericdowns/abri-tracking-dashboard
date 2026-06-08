@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abri Website Performance (Mockup)</title>
+<title>Abri · Pulse (Mockup)</title>
 <style>
   @font-face{font-family:'Roobert';src:url('./fonts/Roobert-Regular.woff2') format('woff2'),url('./fonts/Roobert-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap;}
   @font-face{font-family:'Roobert';src:url('./fonts/Roobert-SemiBold.woff2') format('woff2'),url('./fonts/Roobert-SemiBold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap;}
@@ -33,12 +33,6 @@
   .page-title .stamp{color:var(--pewter);font-size:13px;}
   .uline{width:52px;height:4px;background:var(--red);border-radius:3px;margin:10px 0 16px;}
   .lead-note{color:var(--pewter);font-size:14.5px;margin-bottom:26px;max-width:680px;}
-
-  .spotlight{display:flex;align-items:flex-start;gap:16px;background:#fff;border:1.5px solid var(--dteal);border-radius:14px;padding:18px 22px;margin-bottom:24px;box-shadow:var(--shadow);}
-  .spotlight .sp-ic{width:40px;height:40px;border-radius:11px;background:var(--teal-soft);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
-  .spotlight .sp-label{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--teal-deep);margin-bottom:5px;}
-  .spotlight .sp-text{font-size:15.5px;color:var(--ink);line-height:1.5;font-weight:500;}
-  .spotlight .sp-text b{font-weight:600;}
 
   .phase{font-size:10.5px;font-weight:600;letter-spacing:.4px;padding:4px 10px;border-radius:20px;white-space:nowrap;text-transform:uppercase;}
   .phase.p1{background:var(--dteal);color:#fff;}
@@ -133,8 +127,15 @@
   .qrow .qn{font-size:14px;}
   .qrow .qv{margin-left:auto;font-size:12px;color:var(--pewter);}
 
-  .p2-zone{background:var(--teal-soft);border:1px solid var(--dteal);border-radius:16px;padding:22px;margin-bottom:18px;}
+  .p2-zone{background:#f2f1ee;border:1px dashed var(--silver);border-radius:16px;padding:22px;margin-bottom:18px;position:relative;}
   .p2-zone .section-head{margin-top:0;}
+  .p2-zone .card{opacity:.78;filter:grayscale(.55);}
+  .p2-zone .card.nogray{opacity:1;filter:none;}
+  .p2-banner{background:#fff;border:1px solid var(--silver);border-left:3px solid var(--pewter);border-radius:8px;padding:13px 16px;font-size:13px;color:var(--charcoal);margin-bottom:16px;line-height:1.55;}
+  .p2-banner b{color:var(--ink);}
+  .p2-marker{background:#fbfaf7;border:1px dashed var(--silver);border-radius:12px;padding:30px 22px;text-align:center;color:var(--pewter);font-size:13.5px;line-height:1.6;}
+  .p2-marker b{color:var(--charcoal);display:block;font-size:15px;margin-bottom:6px;}
+  .ai-toggle,.ai-panel,.ai-off-note{display:none !important;}
 
   .ab{display:flex;flex-direction:column;gap:14px;margin-top:4px;}
   .abv .abh{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;}
@@ -163,27 +164,34 @@
   .ai-toggle .knob{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s;}
   .ai-toggle input:checked + .track{background:var(--dteal);}
   .ai-toggle input:checked + .track .knob{left:19px;}
-  .ai-panel{display:none;background:#f4faf8;border:1px solid #d3ebe5;border-radius:14px;padding:20px;margin-bottom:24px;}
+  .ai-panel{display:none;background:linear-gradient(162deg,#f1faf7 0%,#fbfaf5 62%,#fdf3f3 140%);border:1px solid #d8ebe6;border-radius:18px;padding:26px 28px;margin-bottom:24px;box-shadow:0 1px 2px rgba(39,48,56,.04),0 14px 38px rgba(47,169,153,.07);}
   body.ai-on .ai-panel{display:block;}
-  .ai-off-note{display:none;background:var(--offwhite);border:1px dashed var(--tan);border-radius:14px;padding:15px 20px;margin-bottom:24px;color:var(--pewter);font-size:13.5px;line-height:1.55;}
+  .ai-off-note{display:none;background:#fff;border:1px solid var(--line);border-left:3px solid var(--dteal);border-radius:14px;padding:18px 22px;margin-bottom:24px;color:var(--pewter);font-size:14px;line-height:1.6;}
   body:not(.ai-on) .ai-off-note{display:block;}
-  .ai-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
-  .ai-ava{width:38px;height:38px;border-radius:11px;background:linear-gradient(145deg,#62e2d1,#2fa999);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .ai-off-note b{color:var(--ink);}
+  .ai-off-note .src{color:var(--teal-deep);font-weight:600;}
+  .ai-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .ai-ava{width:44px;height:44px;border-radius:50%;background:linear-gradient(145deg,#62e2d1,#2fa999);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 4px 12px rgba(47,169,153,.32);}
   .ai-headtext{flex:1;}
   .ai-name{font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
   .ai-tag{font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--teal-deep);background:#fff;border:1px solid var(--dteal);border-radius:20px;padding:3px 9px;}
   .ai-status{font-size:12px;color:var(--teal-deep);display:flex;align-items:center;gap:7px;margin-top:3px;}
   .ai-status .live{width:7px;height:7px;border-radius:50%;background:#2fa999;display:inline-block;box-shadow:0 0 0 3px rgba(47,169,153,.22);}
-  .ai-summary{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:16px;letter-spacing:-.2px;}
-  .ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;}
-  .ai-c{background:#fff;border:1px solid #d3ede7;border-radius:12px;padding:16px;}
-  .ai-c .ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;margin-bottom:11px;}
-  .ai-c.win .ic{background:var(--teal-soft);color:var(--teal-deep);}
-  .ai-c.opp .ic{background:#eceef0;color:#303C46;}
-  .ai-c.watch .ic{background:var(--red-soft);color:#c5302f;}
-  .ai-c .cat{font-size:10.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--pewter);margin-bottom:5px;}
-  .ai-c .hl{font-weight:600;font-size:14.5px;color:var(--ink);margin-bottom:6px;line-height:1.35;}
-  .ai-c .dt{font-size:12.5px;color:var(--pewter);line-height:1.5;}
+  .asst-greeting{font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.3px;margin-bottom:8px;}
+  .asst-read{font-size:15.5px;line-height:1.65;color:var(--charcoal);max-width:780px;margin-bottom:22px;}
+  .asst-read b{color:var(--ink);font-weight:600;}
+  .asst-notes{background:#fff;border:1px solid #e7efec;border-radius:14px;padding:4px 22px;}
+  .asst-note{display:flex;gap:15px;align-items:flex-start;padding:17px 0;border-bottom:1px solid #f1f4f2;}
+  .asst-note:last-child{border-bottom:none;}
+  .asst-note .nicon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0;margin-top:1px;}
+  .asst-note.good .nicon{background:var(--teal-soft);color:var(--teal-deep);}
+  .asst-note.opp .nicon{background:#eef1f3;color:var(--charcoal);}
+  .asst-note.watch .nicon{background:var(--red-soft);color:#c5302f;}
+  .asst-note .nhl{font-weight:600;font-size:14.5px;color:var(--ink);margin-bottom:3px;}
+  .asst-note .ndt{font-size:13.5px;color:var(--pewter);line-height:1.55;}
+  .asst-note .ndt b{color:var(--charcoal);font-weight:600;}
+  .asst-sign{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--pewter);margin-top:18px;font-style:italic;}
+  .asst-sign .live{width:7px;height:7px;border-radius:50%;background:#2fa999;display:inline-block;box-shadow:0 0 0 3px rgba(47,169,153,.18);flex-shrink:0;}
   .ai-ask{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:13px;}
   .ai-chip{background:#fff;border:1px solid #cfeae4;border-radius:20px;padding:7px 14px;font-size:12.5px;color:var(--teal-deep);cursor:pointer;}
   .ai-bar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #cfeae4;border-radius:12px;padding:9px 9px 9px 16px;}
@@ -260,7 +268,7 @@
 </clipPath>
 </defs>
 </svg></span>
-      <span class="sub">Website Performance &nbsp;·&nbsp; first-party tracking by Grain &amp; Mortar</span>
+      <span class="sub">Pulse &nbsp;·&nbsp; first-party tracking by Grain &amp; Mortar</span>
     </div>
     <div class="right">
       <label class="ai-toggle"><input type="checkbox" checked onchange="document.body.classList.toggle('ai-on', this.checked)"><span class="track"><span class="knob"></span></span><span>✦ AI Insights</span></label>
@@ -277,45 +285,42 @@
     <div class="uline"></div>
     <p class="lead-note">A rough look at what your dashboard could show, built in two phases. Every card is labeled with where its data comes from. Every figure here is placeholder sample data.</p>
 
-    <div class="spotlight">
-      <div class="sp-ic">★</div>
-      <div class="sp-body">
-        <div class="sp-label">Your best source this month</div>
-        <div class="sp-text"><b>Google Ads</b> brought <b>18 ready-to-talk leads</b>, your most of any source, at a <b>47% quality rate</b>. Organic search is the strong runner-up. Direct traffic is high in volume but rarely ready to talk yet.</div>
-      </div>
-    </div>
-
     <div class="ai-panel">
       <div class="ai-head">
         <span class="ai-ava">✦</span>
         <div class="ai-headtext">
           <div class="ai-name">Abri Assistant <span class="ai-tag">AI · optional add-on</span></div>
-          <div class="ai-status"><span class="live"></span> Watching your numbers · updated 9:14 AM</div>
+          <div class="ai-status"><span class="live"></span> Here to help you make sense of the month</div>
         </div>
       </div>
-      <div class="ai-summary">Solid month. Your booked meetings are up 12% and your ad spend is clearly pulling its weight.</div>
-      <div class="ai-cards">
-        <div class="ai-c win">
-          <div class="ic">✓</div>
-          <div class="cat">Working</div>
-          <div class="hl">Your ads are earning their keep</div>
-          <div class="dt">Google Ads brought 18 of your 42 ready-to-talk leads this month, your single best source.</div>
+      <div class="asst-greeting">Good morning 👋 Here's how things are looking.</div>
+      <p class="asst-read">It's been a solid month, and your ads are doing the heavy lifting. <b>Google Ads brought 18 of your 42 ready-to-talk leads</b>, your strongest source by a good margin, and your booked meetings are up 12%. A couple of things below are worth a closer look when you have a minute.</p>
+      <div class="asst-notes">
+        <div class="asst-note good">
+          <span class="nicon">✓</span>
+          <div>
+            <div class="nhl">What's going well</div>
+            <div class="ndt">Your ads are earning their keep. Google Ads is your single best source for people actually ready to talk, at a <b>47% quality rate</b>, ahead of every other channel.</div>
+          </div>
         </div>
-        <div class="ai-c opp">
-          <div class="ic">↑</div>
-          <div class="cat">Opportunity</div>
-          <div class="hl">Lean into the Divorcées page</div>
-          <div class="dt">It holds attention longest at 3:12. More ad and email traffic here should turn into meetings.</div>
+        <div class="asst-note opp">
+          <span class="nicon">↗</span>
+          <div>
+            <div class="nhl">Worth leaning into</div>
+            <div class="ndt">The Divorcées page holds attention the longest, <b>3:12</b> on average. Sending more of your ad and email traffic there should turn into booked meetings.</div>
+          </div>
         </div>
-        <div class="ai-c watch">
-          <div class="ic">!</div>
-          <div class="cat">Watch</div>
-          <div class="hl">The Contact page is leaking visitors</div>
-          <div class="dt">A 42% bounce rate. A clearer headline or a booking button up top would hold more of them.</div>
+        <div class="asst-note watch">
+          <span class="nicon">!</span>
+          <div>
+            <div class="nhl">Keep an eye on</div>
+            <div class="ndt">The Contact page is losing people, a <b>42% bounce rate</b>. A clearer headline or a booking button near the top would hold more of them.</div>
+          </div>
         </div>
       </div>
+      <div class="asst-sign"><span class="live"></span> I'll keep watching your numbers and let you know the moment something shifts.</div>
     </div>
-    <div class="ai-off-note"><b style="color:var(--pewter);">AI Insights are off.</b> Turn them on (top right) to get plain-English takeaways and recommendations pulled from your numbers. This is an optional add-on, so the dashboard works fully without it.</div>
+    <div class="ai-off-note"><b>AI Insights is off,</b> and that's completely fine, the dashboard works fully without it. Your numbers are all still here. The quick read this month: <span class="src">Google Ads is your strongest source, 18 ready-to-talk leads at a 47% quality rate.</span> Turn the assistant on (top right) any time you'd like a friendly, plain-language summary like this each month.</div>
 
     <!-- ============ PHASE 1 ============ -->
     <div class="section-head">
@@ -402,13 +407,13 @@
 
     <div class="card" style="margin-bottom:18px;">
       <div class="chead"><h3>Leads by Source</h3></div>
-      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Ranked by qualified leads, the ones actually ready to talk, not just total clicks. The rate is how many of each source's leads were worth your team's time.</p>
-      <div class="srcrow top"><div class="nm">Google Ads <span class="srcbadge">Top performer</span></div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>18</b> qualified · <span class="rate">47%</span> <span class="of">of 38</span></div></div>
-      <div class="srcrow"><div class="nm">Organic search</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:67%"></div></div></div><div class="ct"><b>12</b> qualified · <span class="rate">39%</span> <span class="of">of 31</span></div></div>
-      <div class="srcrow"><div class="nm">Meta Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:44%"></div></div></div><div class="ct"><b>8</b> qualified · <span class="rate">36%</span> <span class="of">of 22</span></div></div>
-      <div class="srcrow"><div class="nm">Direct &amp; other</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:22%"></div></div></div><div class="ct"><b>4</b> qualified · <span class="rate">19%</span> <span class="of">of 21</span></div></div>
+      <p style="font-size:13px;color:var(--pewter);margin:-4px 0 14px;">Where your leads come from. Every captured lead is tagged with its source the moment it arrives, so you can see which channels actually bring people in.</p>
+      <div class="srcrow top"><div class="nm">Google Ads <span class="srcbadge">Top source</span></div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:100%"></div></div></div><div class="ct"><b>38</b> leads</div></div>
+      <div class="srcrow"><div class="nm">Organic search</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:82%"></div></div></div><div class="ct"><b>31</b> leads</div></div>
+      <div class="srcrow"><div class="nm">Meta Ads</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:58%"></div></div></div><div class="ct"><b>22</b> leads</div></div>
+      <div class="srcrow"><div class="nm">Direct &amp; other</div><div class="barwrap"><div class="bartrack"><div class="barfill" style="width:55%"></div></div></div><div class="ct"><b>21</b> leads</div></div>
       <div class="source"><span class="dot"></span>Source: <b>&nbsp;G&amp;M site tracking + G&amp;M Capture</b></div>
-      <div class="upgrade"><span class="a">Phase 2 →</span> cost per lead by channel, from your Google Ads and Meta spend</div>
+      <div class="upgrade"><span class="a">Phase 2 →</span> confirms which of these became booked meetings or office calls, by source</div>
     </div>
 
     <div class="card dlcard" style="margin-bottom:18px;">
@@ -428,6 +433,8 @@
         <span class="ttl">Connected data &amp; history</span>
         <span class="desc">Once we connect Calendly, CallRail, and Google Analytics. Confirms your ready-to-talk leads and adds year-over-year history.</span>
       </div>
+
+      <div class="p2-banner"><b>Not included in Phase 1.</b> This section is a preview of what turns on later, once we connect Calendly, CallRail, and Google Analytics (which need access to those accounts). The cards below are grayed out on purpose and use sample numbers. Phase 1 is built so these simply switch on later, with no rebuild.</div>
 
       <div class="row-half">
         <div class="card">
@@ -452,18 +459,13 @@
         </div>
       </div>
 
-      <div class="card" style="margin-bottom:0;">
+      <div class="card nogray" style="margin-bottom:0;">
         <div class="chead"><h3>New Visitors: This Year vs. Last Year</h3></div>
-        <div class="chart">
-          <div class="bargroup"><div class="bar last" style="height:63%"></div><div class="bar this" style="height:75%"></div><span class="mlabel">Jan</span></div>
-          <div class="bargroup"><div class="bar last" style="height:70%"></div><div class="bar this" style="height:83%"></div><span class="mlabel">Feb</span></div>
-          <div class="bargroup"><div class="bar last" style="height:68%"></div><div class="bar this" style="height:80%"></div><span class="mlabel">Mar</span></div>
-          <div class="bargroup"><div class="bar last" style="height:78%"></div><div class="bar this" style="height:91%"></div><span class="mlabel">Apr</span></div>
-          <div class="bargroup"><div class="bar last" style="height:81%"></div><div class="bar this" style="height:95%"></div><span class="mlabel">May</span></div>
-          <div class="bargroup"><div class="bar last" style="height:85%"></div><div class="bar this" style="height:95%"></div><span class="mlabel">Jun</span></div>
+        <div class="p2-marker">
+          <b>Year-over-year history needs time to build.</b>
+          We start collecting from day one, so a real this-year-vs-last-year comparison fills in after about 12 months of tracking (probably). It can show sooner only if we are able to connect your existing Google Analytics history, which is a Phase 2 step that needs account access.
         </div>
-        <div class="legend"><span><i class="sw-last"></i> Last year</span><span><i class="sw-this"></i> This year</span></div>
-        <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;Google Analytics history</b></div>
+        <div class="source"><span class="dot dep"></span>Source: <b>&nbsp;Our own tracking over time, or Google Analytics history (Phase 2)</b></div>
       </div>
 
       <div style="font-size:12.5px;color:var(--teal-deep);line-height:1.55;margin-top:18px;">Optional: if your team decides you want to test different versions of a page (A/B testing) to lift these numbers, we can add that later. We'll check on your interest before scoping it.</div>
@@ -491,7 +493,6 @@
         <div class="gi"><b>Calendly.</b> The scheduling tool your visitors use to book meetings.</div>
         <div class="gi"><b>CallRail.</b> A phone-tracking tool that records calls coming from the website.</div>
         <div class="gi"><b>Leads by source.</b> A breakdown of where your leads came from, such as Google Ads, Meta, organic search, or direct visits.</div>
-        <div class="gi"><b>AI Insights.</b> An optional assistant that reads your dashboard and explains, in plain language, what the numbers mean and what to do next.</div>
       </div>
     </div>
   </div>
